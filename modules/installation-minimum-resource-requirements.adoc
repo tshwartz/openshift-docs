@@ -84,6 +84,7 @@ endif::[]
 
 Each cluster machine must meet the following minimum requirements:
 
+.Minimum resource requirements
 [cols="2,2,2,2,2,2",options="header"]
 |===
 
@@ -187,6 +188,8 @@ ifdef::azure[]
 You are required to use Azure virtual machines with `premiumIO` set to `true`. The machines must also have the `hyperVGeneration` property contain `V1`.
 ====
 endif::azure[]
+
+If an instance type for your platform meets the minimum requirements for cluster machines, it is supported to use in {product-title}.
 
 ifeval::["{context}" == "installing-azure-customizations"]
 :!azure:

@@ -47,9 +47,9 @@ Password: ************
 
 . Optional: Display help for the PPC tool:
 +
-[source,terminal]
+[source,terminal,subs="attributes+"]
 ----
-$ podman run --entrypoint performance-profile-creator registry.redhat.io/openshift4/ose-cluster-node-tuning-operator:v4.11 -h
+$ podman run --rm --entrypoint performance-profile-creator registry.redhat.io/openshift4/ose-cluster-node-tuning-operator:v{product-version} -h
 ----
 +
 .Example output
@@ -67,6 +67,7 @@ Flags:
       --info string                       Show cluster information; requires --must-gather-dir-path, ignore the other arguments. [Valid values: log, json] (default "log")
       --mcp-name string                   MCP name corresponding to the target machines (required)
       --must-gather-dir-path string       Must gather directory path (default "must-gather")
+      --offlined-cpu-count int            Number of offlined CPUs
       --power-consumption-mode string     The power consumption mode.  [Valid values: default, low-latency, ultra-low-latency] (default "default")
       --profile-name string               Name of the performance profile to be created (default "performance")
       --reserved-cpu-count int            Number of reserved CPUs (required)
@@ -88,9 +89,9 @@ Discovery mode inspects your cluster using the output from `must-gather`. The ou
 Using this information you can set appropriate values for some of the arguments supplied to the Performance Profile Creator tool.
 ====
 +
-[source,terminal]
+[source,terminal,subs="attributes+"]
 ----
-$ podman run --entrypoint performance-profile-creator -v /must-gather:/must-gather:z registry.redhat.io/openshift4/ose-cluster-node-tuning-operator:v4.11 --info log --must-gather-dir-path /must-gather
+$ podman run --entrypoint performance-profile-creator -v <path_to_must-gather>/must-gather:/must-gather:z registry.redhat.io/openshift4/ose-cluster-node-tuning-operator:v{product-version} --info log --must-gather-dir-path /must-gather
 ----
 +
 [NOTE]
@@ -107,9 +108,9 @@ The `info` option requires a value which specifies the output format. Possible v
 
 . Run `podman`:
 +
-[source,terminal]
+[source,terminal,subs="attributes+"]
 ----
-$ podman run --entrypoint performance-profile-creator -v /must-gather:/must-gather:z registry.redhat.io/openshift4/ose-cluster-node-tuning-operator:v4.11 --mcp-name=worker-cnf --reserved-cpu-count=20 --rt-kernel=true --split-reserved-cpus-across-numa=false --topology-manager-policy=single-numa-node --must-gather-dir-path /must-gather  --power-consumption-mode=ultra-low-latency > my-performance-profile.yaml
+$ podman run --entrypoint performance-profile-creator -v /must-gather:/must-gather:z registry.redhat.io/openshift4/ose-cluster-node-tuning-operator:vBranch Build --mcp-name=worker-cnf --reserved-cpu-count=4 --rt-kernel=true --split-reserved-cpus-across-numa=false --must-gather-dir-path /must-gather --power-consumption-mode=ultra-low-latency --offlined-cpu-count=6 > my-performance-profile.yaml
 ----
 +
 [NOTE]
@@ -138,26 +139,21 @@ kind: PerformanceProfile
 metadata:
   name: performance
 spec:
-  additionalKernelArgs:
-  - nmi_watchdog=0
-  - audit=0
-  - mce=off
-  - processor.max_cstate=1
-  - intel_idle.max_cstate=0
-  - idle=poll
   cpu:
-    isolated: "1,3,5,7,9,11,13,15,17,19-39,41,43,45,47,49,51,53,55,57"
-    reserved: "0,2,4,6,8,10,12,14,16,18,40,42,44,46,48,50,52,54,56,58"
-    offlined: "59-79"
+    isolated: 2-39,48-79
+    offlined: 42-47
+    reserved: 0-1,40-41
+  machineConfigPoolSelector:
+    machineconfiguration.openshift.io/role: worker-cnf
   nodeSelector:
     node-role.kubernetes.io/worker-cnf: ""
   numa:
-    topologyPolicy: single-numa-node
+    topologyPolicy: restricted
   realTimeKernel:
     enabled: true
   workloadHints:
     highPowerConsumption: true
-    realtime: true
+    realTime: true
 ----
 
 . Apply the generated profile:

@@ -11,7 +11,7 @@ The {servicebinding-title} enables you to expose the binding data values from th
 
 This section provides examples to show how you can use the various categories of exposable binding data. You must modify these examples to suit your work environment and requirements.
 
-
+[id="exposing-a-string-from-a-resource_{context}"]
 == Exposing a string from a resource
 The following example shows how to expose the string from the `metadata.name` field of the `PostgresCluster` custom resource (CR) as a username:
 
@@ -28,7 +28,7 @@ metadata:
     ...
 ----
 
-
+[id="exposing-a-constant-value-as-the-binding-item_{context}"]
 == Exposing a constant value as the binding item
 The following examples show how to expose a constant value from the `PostgresCluster` custom resource (CR):
 
@@ -45,7 +45,7 @@ metadata:
 ----
 <1> Binding `type` to be exposed with the `postgresql` value.
 
-
+[id="exposing-an-entire-config-map-or-secret-that-is-referenced-from-a-resource_{context}"]
 == Exposing an entire config map or secret that is referenced from a resource
 The following examples show how to expose an entire secret through annotations:
 
@@ -73,6 +73,7 @@ data:
   user: "Z3Vlc3Q="
 ----
 
+////
 The following example shows how to expose an entire config map through OLM descriptors:
 
 .Example: Exposing an entire config map through OLM descriptors
@@ -87,8 +88,10 @@ The following example shows how to expose an entire config map through OLM descr
 This example uses the `path` attribute with a `urn:alm:descriptor:io.kubernetes:ConfigMap` entry to indicate that the path points to the `ConfigMap` service resource.
 
 If you intend to project all the values from a `ConfigMap` service resource, you must specify it as an attribute in the backing service CR. For example, if the attribute is part of the `.spec` section, you can create and use a `specDescriptors` array. Or, if the attribute is part of the `.status` section, you can create and use a `statusDescriptors` array.
+////
+// When the OLM descriptors are supported again, add this example.
 
-
+[id="exposing-a-specific-entry-from-a-config-map-or-secret-that-is-referenced-from-a-resource_{context}"]
 == Exposing a specific entry from a config map or secret that is referenced from a resource
 The following examples show how to expose a specific entry from a config map through annotations:
 
@@ -117,6 +120,7 @@ data:
   user: "hippo"
 ----
 
+////
 The following example shows how to expose a specific entry from a config map through OLM descriptors:
 
 .Example: Exposing an entry from a config map through OLM descriptors
@@ -132,8 +136,10 @@ This example uses the `path` attribute with an `X-Descriptors` update for `servi
 
 * Name of the binding key that is to be projected
 * Name of the key in the Secret service resource
+////
+// When the OLM descriptors are supported again, add this example.
 
-
+[id="exposing-a-resource-definition-value_{context}"]
 == Exposing a resource definition value
 The following example shows how to expose a resource definition value through annotations:
 
@@ -150,6 +156,7 @@ metadata:
     ...
 ----
 
+////
 The following example shows how to expose a resource definition value through OLM descriptors:
 
 .Example: Exposing a resource definition value through OLM descriptors
@@ -163,8 +170,10 @@ The following example shows how to expose a resource definition value through OL
 The previous example uses the `connectionURL` attribute that points to the required resource definition value that is to be projected as `uri`.
 
 If required values are available as attributes of backing service resources, annotating these values using `X-Descriptors` identifies them as the binding data.
+////
+// When the OLM descriptors are supported again, add this example.
 
-
+[id="exposing-entries-of-a-collection-with-the-key-and-value-from-each-entry_{context}"]
 == Exposing entries of a collection with the key and value from each entry
 The following example shows how to expose the entries of a collection with the key and value from each entry through annotations:
 
@@ -200,6 +209,7 @@ The following example shows how the previous entries of a collection in annotati
 /bindings/<binding-name>/uri_404 => black-hole.example.com
 ----
 
+////
 The following example shows how to expose the entries of a collection with the key and value from each entry through OLM descriptors:
 
 .Example: Exposing the entries of a collection through OLM descriptors
@@ -211,6 +221,8 @@ The following example shows how to expose the entries of a collection with the k
 ----
 
 The previous example uses the `path` attribute with an `X-Descriptors` update for the required entries of a collection.
+////
+// When the OLM descriptors are supported again, add this example.
 
 .Example: Configuration from a backing service resource
 [source,yaml]
@@ -228,7 +240,7 @@ status:
 The previous example helps you to project all those values with keys such as `primary`,
 `secondary`, and so on.
 
-
+[id="exposing-items-of-a-collection-with-one-key-per-item_{context}"]
 == Exposing items of a collection with one key per item
 The following example shows how to expose the items of a collection with one key per item through annotations:
 
@@ -259,6 +271,7 @@ The following example shows how the previous items of a collection in annotation
 /bindings/<binding-name>/tags_2 => power
 ----
 
+////
 The following example shows how to expose the items of a collection with one key per item through OLM descriptors:
 
 .Example: Exposing the items of a collection through OLM descriptors
@@ -270,6 +283,8 @@ The following example shows how to expose the items of a collection with one key
 ----
 
 The previous example uses the `path` attribute with an `X-Descriptors` update for the required items of a collection.
+////
+// When the OLM descriptors are supported again, add this example.
 
 .Example: Configuration from a backing service resource
 [source,yaml]
@@ -281,7 +296,7 @@ spec:
   - power
 ----
 
-
+[id="exposing-values-of-collection-entries-with-one-key-per-entry-value_{context}"]
 == Exposing values of collection entries with one key per entry value
 The following example shows how to expose the values of collection entries with one key per entry value through annotations:
 
@@ -315,6 +330,7 @@ The following example shows how the previous values of a collection in annotatio
 /bindings/<binding-name>/url_2 => black-hole.example.com
 ----
 
+////
 The following example shows how to expose the values of collection entries with one key per entry value through OLM descriptors:
 
 .Example: Exposing the values of collection entries through OLM descriptors
@@ -324,3 +340,5 @@ The following example shows how to expose the values of collection entries with 
   x-descriptors:
   - service.binding:endpoints:elementType=sliceOfStrings:sourceValue=url
 ----
+////
+// When the OLM descriptors are supported again, add this example.

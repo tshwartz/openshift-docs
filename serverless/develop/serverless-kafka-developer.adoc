@@ -22,8 +22,8 @@ Knative Kafka provides additional options, such as:
 
 * Kafka source
 * Kafka channel
-* Kafka broker (Technology Preview)
-* Kafka sink (Technology Preview)
+* Kafka broker
+* Kafka sink
 
 include::modules/serverless-kafka-event-delivery.adoc[leveloffset=+1]
 
@@ -32,7 +32,7 @@ See the xref:../../serverless/develop/serverless-event-delivery.adoc#serverless-
 [id="serverless-kafka-developer-source"]
 == Kafka source
 
-You can create a Kafka source that reads events from an Apache Kafka cluster and passes these events to a sink. You can create a Kafka source by using the {product-title} web console, the Knative (`kn`) CLI, or by creating a `KafkaSource` object directly as a YAML file and using the OpenShift (`oc`) CLI to apply it.
+You can create a Kafka source that reads events from an Apache Kafka cluster and passes these events to a sink. You can create a Kafka source by using the {product-title} web console, the Knative (`kn`) CLI, or by creating a `KafkaSource` object directly as a YAML file and using the OpenShift CLI (`oc`) to apply it.
 
 // dev console
 include::modules/serverless-kafka-source-odc.adoc[leveloffset=+2]
@@ -45,13 +45,9 @@ include::modules/serverless-kafka-source-yaml.adoc[leveloffset=+2]
 [id="serverless-kafka-developer-broker"]
 == Kafka broker
 
-include::snippets/serverless-kafka-broker-intro.adoc[]
+include::snippets/serverless-about-kafka-broker.adoc[]
 
-:FeatureName: Kafka broker
-include::snippets/technology-preview.adoc[leveloffset=+2]
-
-include::modules/serverless-kafka-broker.adoc[leveloffset=+2]
-include::modules/serverless-kafka-broker-with-kafka-topic.adoc[leveloffset=+2]
+For information about using Kafka brokers, see xref:../../serverless/develop/serverless-using-brokers.adoc#serverless-using-brokers[Creating brokers].
 
 // Kafka channels
 include::modules/serverless-create-kafka-channel-yaml.adoc[leveloffset=+1]
@@ -60,9 +56,6 @@ include::modules/serverless-create-kafka-channel-yaml.adoc[leveloffset=+1]
 == Kafka sink
 
 Kafka sinks are a type of xref:../../serverless/develop/serverless-event-sinks.adoc#serverless-event-sinks[event sink] that are available if a cluster administrator has enabled Kafka on your cluster. You can send events directly from an xref:../../serverless/discover/knative-event-sources.adoc#knative-event-sources[event source] to a Kafka topic by using a Kafka sink.
-
-:FeatureName: Kafka sink
-include::snippets/technology-preview.adoc[leveloffset=+2]
 
 // Kafka sink
 include::modules/serverless-kafka-sink.adoc[leveloffset=+2]

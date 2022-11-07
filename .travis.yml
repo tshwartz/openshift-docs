@@ -2,10 +2,12 @@ language: python
 cache: pip
 # env:
 #   - PR_AUTHOR=${TRAVIS_PULL_REQUEST_SLUG::-15}
-
+git:
+  depth: 1
 jobs:
   include:
     - stage: build
+      name: "Build openshift-enterprise distro"
       before_install:
         - gem install asciidoctor
         - gem install asciidoctor-diagram
@@ -15,7 +17,8 @@ jobs:
       script:
         - python3 build.py --distro openshift-enterprise --product "OpenShift Container Platform" --version 4.11 --no-upstream-fetch && python3 makeBuild.py
     - # stage name not required, will continue to use `build`
-      if: branch IN (main, enterprise-4.10, enterprise-4.11)
+      if: branch IN (main, enterprise-4.11, enterprise-4.12)
+      name: "Build openshift-dedicated distro"
       before_install:
         - gem install asciidoctor
         - gem install asciidoctor-diagram
@@ -25,7 +28,8 @@ jobs:
       script:
         - python3 build.py --distro openshift-dedicated --product "OpenShift Dedicated" --version 4 --no-upstream-fetch && python3 makeBuild.py
     - # stage name not required, will continue to use `build`
-      if: branch IN (main, enterprise-4.10, enterprise-4.11)
+      if: branch IN (main, enterprise-4.11, enterprise-4.12)
+      name: "Build openshift-rosa distro"
       before_install:
         - gem install asciidoctor
         - gem install asciidoctor-diagram
@@ -34,11 +38,41 @@ jobs:
         - pip3 install aura.tar.gz
       script:
         - python3 build.py --distro openshift-rosa --product "Red Hat OpenShift Service on AWS" --version 4 --no-upstream-fetch && python3 makeBuild.py
+    - # stage name not required, will continue to use `build`
+      if: branch IN (main, enterprise-4.12)
+      name: "Build microshift distro"
+      before_install:
+        - gem install asciidoctor
+        - gem install asciidoctor-diagram
+      install:
+        - pip3 install pyyaml
+        - pip3 install aura.tar.gz
+      script:
+        - python3 build.py --distro microshift --product "MicroShift" --version 4 --no-upstream-fetch && python3 makeBuild.py
+    - stage: check-with-vale
+      if: type IN (pull_request)
+      name: "Run Vale against PR asciidoc files"
+      before_script:
+        - gem install asciidoctor
+      script:
+        - travis_retry wget https://github.com/errata-ai/vale/releases/download/v2.20.1/vale_2.20.1_Linux_64-bit.tar.gz --retry-connrefused
+        - mkdir bin && tar -xvzf vale_2.20.1_Linux_64-bit.tar.gz -C bin
+        - export PATH=./bin:"$PATH"
+        - travis_retry vale sync # pull down VRH rules package
+        - chmod +x ./scripts/check-with-vale.sh
+        - travis_retry ./scripts/check-with-vale.sh $TRAVIS_PULL_REQUEST $TRAVIS_PULL_REQUEST_SHA
     # Commenting out to disable auto-merging of PRs
     # - stage: automerge
     #   if: env(PR_AUTHOR)=openshift-cherrypick-robot
     #   script: bash ./automerge.sh
+    - stage: netlify
+      language: minimal
+      if: branch IN (main, enterprise-4.11, enterprise-4.12)
+      script:
+        - chmod +x autopreview.sh && ./autopreview.sh
 
 stages:
   - build
-  # - automerge
+  - netlify
+  - check-with-vale
+  #- automerge

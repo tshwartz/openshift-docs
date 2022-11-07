@@ -1,6 +1,6 @@
 // Module included in the following assemblies:
 //
-// scalability_and_performance/cnf-performance-addon-operator-for-low-latency-nodes.adoc
+// scalability_and_performance/cnf-low-latency-tuning.adoc
 
 :_content-type: CONCEPT
 [id="cnf-understanding-workload-hints_{context}"]
@@ -9,7 +9,7 @@
 The following table describes how combinations of power consumption and real-time settings impact on latency.
 [NOTE]
 ====
-The following workload hints can be configured manually. See "Creating a performance profile" for further information. You can also work with workload hints using the Performance Profile Creator. See "Creating a performance profile" for further information.
+The following workload hints can be configured manually. You can also work with workload hints using the Performance Profile Creator. For more information about the performance profile, see the "Creating a performance profile" section.
 ====
 
 [cols="1,1,1,1",options="header"]
@@ -21,7 +21,7 @@ The following workload hints can be configured manually. See "Creating a perform
 ----
 workloadHints:
 highPowerConsumption: false
-realtime: false
+realTime: false
 ----
     | High throughput cluster without latency requirements
     | Performance achieved through CPU partitioning only.
@@ -33,7 +33,7 @@ realtime: false
 ----
 workloadHints:
 highPowerConsumption: false
-realtime: true
+realTime: true
 ----
     | Regional datacenters
     | Both energy savings and low-latency are desirable: compromise between power management, latency and throughput.
@@ -44,9 +44,20 @@ realtime: true
 ----
 workloadHints:
 highPowerConsumption: true
-realtime: true
+realTime: true
 ----
     | Far edge clusters, latency critical workloads
     | Optimized for absolute minimal latency and maximum determinism at the cost of increased power consumption.
+
+    | Per-pod power management
+    a|[source,terminal]
+----
+workloadHints:
+realTime: true
+highPowerConsumption: false
+perPodPowerManagement: true
+----
+    | Critical and non-critical workloads
+    | Allows for power management per pod.
 
 |===

@@ -93,8 +93,10 @@ Topics:
   File: creating-a-gcp-cluster
 - Name: Configuring your identity providers
   File: config-identity-providers
-- Name: Notifications for OpenShift Dedicated clusters
-  File: notifications
+- Name: Revoking privileges and access to an OpenShift Dedicated cluster  
+  File: osd-revoking-cluster-privileges
+- Name: Deleting an OpenShift Dedicated cluster
+  File: osd-deleting-a-cluster
 ---
 Name: Cluster administration
 Dir: osd_cluster_admin
@@ -120,16 +122,24 @@ Topics:
       File: osd-managing-worker-nodes
     - Name: About autoscaling nodes on a cluster
       File: osd-nodes-about-autoscaling-nodes
+- Name: Logging
+  Dir: osd_logging
+  Distros: openshift-dedicated
+  Topics:
+  - Name: Accessing the service logs
+    File: osd-accessing-the-service-logs
 - Name: Monitoring user-defined projects
   Dir: osd_monitoring
   Distros: openshift-dedicated
   Topics:
     - Name: Understanding the monitoring stack
       File: osd-understanding-the-monitoring-stack
-    - Name: Configuring the monitoring stack
-      File: osd-configuring-the-monitoring-stack
     - Name: Accessing monitoring for user-defined projects
       File: osd-accessing-monitoring-for-user-defined-projects
+    - Name: Configuring the monitoring stack
+      File: osd-configuring-the-monitoring-stack
+    - Name: Enabling alert routing for user-defined projects
+      File: osd-enabling-alert-routing-for-user-defined-projects
     - Name: Managing metrics
       File: osd-managing-metrics
     - Name: Managing alerts
@@ -157,6 +167,18 @@ Topics:
   File: osd-upgrades
   Distros: openshift-dedicated
 ---
+Name: CI/CD
+Dir: cicd
+Distros: openshift-dedicated
+Topics:
+- Name: Builds
+  Dir: builds
+  Distros: openshift-dedicated
+  Topics:
+  - Name: Setting up additional trusted certificate authorities for builds
+    File: setting-up-trusted-ca
+    Distros: openshift-dedicated
+---
 Name: Add-on services
 Dir: adding_service_cluster
 Distros: openshift-dedicated
@@ -177,20 +199,44 @@ Topics:
   Topics:
     - Name: Persistent storage using AWS EFS
       File: osd-persistent-storage-aws
+    - Name: AWS Elastic File Service CSI Driver Operator
+      File: osd-persistent-storage-aws-efs-csi
 ---
 Name: Networking
 Dir: networking
 Distros: openshift-dedicated
 Topics:
+- Name: Understanding the Ingress Operator
+  File: ingress-operator
 - Name: OpenShift SDN default CNI network provider
   Dir: openshift_sdn
   Topics:
   - Name: Enabling multicast for a project
     File: enabling-multicast
-- Name: Configuring a cluster-wide proxy during installation
+- Name: Configuring a cluster-wide proxy
   File: configuring-cluster-wide-proxy
 - Name: CIDR range definitions
   File: cidr-range-definitions
+- Name: Network policy
+  Dir: network_policy
+  Topics:
+  - Name: About network policy
+    File: about-network-policy
+  - Name: Creating a network policy
+    File: creating-network-policy
+  - Name: Viewing a network policy
+    File: viewing-network-policy
+  - Name: Deleting a network policy
+    File: deleting-network-policy
+  - Name: Configuring multitenant isolation with network policy
+    File: multitenant-network-policy
+- Name: Configuring Routes
+  Dir: routes
+  Topics:
+  - Name: Route configuration
+    File: route-configuration
+  - Name: Secured routes
+    File: secured-routes
 ---
 Name: Applications
 Dir: applications
@@ -218,6 +264,8 @@ Topics:
     File: serverless-functions-about
   - Name: Event sources
     File: knative-event-sources
+  - Name: Brokers
+    File: serverless-brokers
   - Name: Channels and subscriptions
     File: serverless-channels
 - Name: Install
@@ -271,7 +319,7 @@ Topics:
     File: serverless-creating-channels
   - Name: Creating and managing subscriptions
     File: serverless-subs
-  - Name: Brokers
+  - Name: Creating brokers
     File: serverless-using-brokers
   - Name: Triggers
     File: serverless-triggers
@@ -307,6 +355,8 @@ Topics:
 - Name: Security
   Dir: security
   Topics:
+  - Name: Configuring TLS authentication
+    File: serverless-config-tls
   - Name: Configuring JSON Web Token authentication for Knative services
     File: serverless-ossm-with-kourier-jwt
   - Name: Configuring a custom domain for a Knative service
@@ -322,7 +372,7 @@ Topics:
     File: serverless-developing-nodejs-functions
   - Name: Developing TypeScript functions
     File: serverless-developing-typescript-functions
-  - Name: Developing Golang functions
+  - Name: Developing Go functions
     File: serverless-developing-go-functions
   - Name: Developing Python functions
     File: serverless-developing-python-functions

@@ -87,6 +87,16 @@
 |15b3
 |101f
 
+|Mellanox
+|MT2892 Family [ConnectX&#8209;6{nbsp}Dx]
+|15b3
+|101d
+
+|Mellanox
+|MT42822 BlueField&#8209;2 in ConnectX&#8209;6 NIC mode
+|15b3
+|a2d6
+
 |Pensando ^[1]^
 |DSC-25 dual-port 25G distributed services card for ionic driver
 |0x1dd8
@@ -96,6 +106,11 @@
 |DSC-100 dual-port 100G distributed services card for ionic driver
 |0x1dd8
 |0x1003
+
+|Silicom
+|STS Family
+|8086
+|1591
 |===
 [.small]
 --

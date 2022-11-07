@@ -9,7 +9,7 @@ toc::[]
 {product-title} {product-version} introduces architectural changes and enhancements. The procedures that you used to manage your {product-title} 3 cluster might not apply to {product-title} 4.
 
 ifndef::openshift-origin[]
-For information on configuring your {product-title} 4 cluster, review the appropriate sections of the {product-title} documentation. For information on new features and other notable technical changes, review the xref:../release_notes/ocp-4-11-release-notes.adoc#ocp-4-11-release-notes[OpenShift Container Platform 4.11 release notes].
+For information on configuring your {product-title} 4 cluster, review the appropriate sections of the {product-title} documentation. For information on new features and other notable technical changes, review the xref:../release_notes/ocp-4-12-release-notes.adoc#ocp-4-12-release-notes[OpenShift Container Platform 4.12 release notes].
 endif::[]
 
 It is not possible to upgrade your existing {product-title} 3 cluster to {product-title} 4. You must start with a new {product-title} 4 installation. Tools are available to assist in migrating your control plane settings and application workloads.
@@ -201,10 +201,17 @@ For more information, see xref:../authentication/understanding-identity-provider
 
 Newly created OAuth HTTP bearer tokens no longer match the names of their OAuth access token objects. The object names are now a hash of the bearer token and are no longer sensitive. This reduces the risk of leaking sensitive information.
 
+[discrete]
+==== Default security context constraints
+
+The `restricted` security context constraints (SCC) in {product-title} 4 can no longer be accessed by any authenticated user as the `restricted` SCC in {product-title} 3.11. The broad authenticated access is now granted to the `restricted-v2` SCC, which is more restrictive than the old `restricted` SCC. The `restricted` SCC still exists; users that want to use it must be specifically given permissions to do it.
+
+For more information, see xref:../authentication/managing-security-context-constraints.adoc#managing-pod-security-policies[Managing security context constraints].
+
 [id="migration-preparing-monitoring"]
 === Monitoring considerations
 
-Review the following monitoring changes to consider when transitioning from {product-title} 3.11 to {product-title} {product-version}.
+Review the following monitoring changes when transitioning from {product-title} 3.11 to {product-title} {product-version}. You cannot migrate Hawkular configurations and metrics to Prometheus.
 
 [discrete]
 ==== Alert for monitoring infrastructure availability

@@ -24,7 +24,7 @@ xref:../updating/understanding-upgrade-channels-release.adoc#understanding-upgra
 
 [id="updating-clusters-overview-prepare-eus-to-eus-update"]
 == Preparing to perform an EUS-to-EUS update
-xref:../updating/preparing-eus-eus-upgrade.adoc#preparing-eus-eus-upgrade[Preparing to perform an EUS-to-EUS update]: Due to fundamental Kubernetes design, all {product-title} updates between minor versions must be serialized. You must update from {product-title} 4.9 to 4.10, and then to 4.11. You cannot update from {product-title} 4.8 to 4.10 directly. However, if you want to update between two Extended Update Support (EUS) versions, you can do so by incurring only a single reboot of non-master hosts. For more information, see the following:
+xref:../updating/preparing-eus-eus-upgrade.adoc#preparing-eus-eus-upgrade[Preparing to perform an EUS-to-EUS update]: Due to fundamental Kubernetes design, all {product-title} updates between minor versions must be serialized. You must update from {product-title} 4.9 to 4.10, and then to 4.11. You cannot update from {product-title} 4.8 to 4.10 directly. However, if you want to update between two Extended Update Support (EUS) versions, you can do so by incurring only a single reboot of non-control plane hosts. For more information, see the following:
 
 * xref:../updating/preparing-eus-eus-upgrade.adoc#updating-eus-to-eus-upgrade_eus-to-eus-upgrade[Updating EUS-to-EUS]
 
@@ -33,7 +33,7 @@ xref:../updating/preparing-eus-eus-upgrade.adoc#preparing-eus-eus-upgrade[Prepar
 xref:../updating/updating-cluster-within-minor.adoc#updating-cluster-within-minor[Updating a cluster using the web console]: You can update an {product-title} cluster by using the web console. The following steps update a cluster within a minor version. You can use the same instructions for updating a cluster between minor versions.
 
 * xref:../updating/updating-cluster-within-minor.adoc#update-using-custom-machine-config-pools-canary_updating-cluster-within-minor[Performing a canary rollout update]
-* xref:../updating/updating-cluster-within-minor.adoc#machine-health-checks-pausing_updating-cluster-within-minor[Pausing a MachineHealthCheck resource]
+* xref:../updating/updating-cluster-within-minor.adoc#machine-health-checks-pausing-web-console_updating-cluster-within-minor[Pausing a MachineHealthCheck resource]
 * xref:../updating/updating-cluster-within-minor.adoc#update-single-node-openshift_updating-cluster-within-minor[About updating {product-title} on a single-node cluster]
 * xref:../updating/updating-cluster-within-minor.adoc#update-upgrading-web_updating-cluster-within-minor[Updating a cluster by using the web console]
 * xref:../updating/updating-cluster-within-minor.adoc#update-changing-update-server-web_updating-cluster-within-minor[Changing the update server by using the web console]
@@ -87,6 +87,11 @@ xref:../updating/updating-hardware-on-nodes-running-on-vsphere.adoc#updating-har
 
 * xref:../updating/updating-hardware-on-nodes-running-on-vsphere.adoc#updating-virtual-hardware-on-vsphere_updating-hardware-on-nodes-running-in-vsphere[Updating virtual hardware on vSphere]
 * xref:../updating/updating-hardware-on-nodes-running-on-vsphere.adoc#scheduling-virtual-hardware-update-on-vsphere_updating-hardware-on-nodes-running-in-vsphere[Scheduling an update for virtual hardware on vSphere]
+
+[id="updating-clusters-overview-sro"]
+== Updating a cluster that includes the Special Resource Operator
+
+xref:../updating/updating-clusters-sro.adoc#updating-clusters-sro[Updating a cluster that includes the Special Resource Operator]: When updating a cluster that includes the Special Resource Operator (SRO), it is important to consider whether the new kernel module version is compatible with the kernel modules currently loaded by the SRO. You can run a preflight check to confirm if the SRO will be able to upgrade the kernel modules.
 
 [IMPORTANT]
 ====

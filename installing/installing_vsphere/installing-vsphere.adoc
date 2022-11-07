@@ -9,6 +9,8 @@ toc::[]
 In {product-title} version {product-version}, you can install a cluster on
 VMware vSphere infrastructure that you provision.
 
+include::snippets/vcenter-support.adoc[]
+
 [IMPORTANT]
 ====
 The steps for performing a user-provisioned infrastructure installation are provided as an example only. Installing a cluster with infrastructure you provide requires knowledge of the vSphere platform and the installation process of {product-title}. Use the user-provisioned infrastructure installation instructions as a guide; you are free to create the required resources through other methods.
@@ -116,6 +118,8 @@ For instructions about configuring registry storage so that it references the co
 include::modules/installation-complete-user-infra.adoc[leveloffset=+1]
 
 You can add extra compute machines after the cluster installation is completed by following xref:../../machine_management/user_infra/adding-vsphere-compute-user-infra.adoc#adding-vsphere-compute-user-infra[Adding compute machines to vSphere].
+
+include::modules/vsphere-anti-affinity.adoc[leveloffset=+1]
 
 include::modules/persistent-storage-vsphere-backup.adoc[leveloffset=+1]
 

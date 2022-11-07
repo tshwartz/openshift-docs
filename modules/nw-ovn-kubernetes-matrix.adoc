@@ -20,7 +20,9 @@ ifeval::["{context}" == "about-ovn-kubernetes"]
 
 |Egress router|Supported ^[2]^|Supported
 
-|IPsec encryption|Supported|Not supported
+|Hybrid networking|Supported|Not supported
+
+|IPsec encryption for intra-cluster communication|Supported|Not supported
 
 |IPv6|Supported ^[3]^|Not supported
 

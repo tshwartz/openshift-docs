@@ -19,11 +19,12 @@ After a user has defined alert routing for a user-defined project, user-defined 
 
 * To the `alertmanager-user-workload` pods in the `openshift-user-workload-monitoring` namespace if you have enabled a separate instance of Alertmanager for user-defined projects. 
 
-Note the following limitations and features of alert routing for user-defined projects:
+[NOTE]
+====
+The following are limitations of alert routing for user-defined projects:
 
 * For user-defined alerting rules, user-defined routing is scoped to the namespace in which the resource is defined.
 For example, a routing configuration in namespace `ns1` only applies to `PrometheusRules` resources in the same namespace.
 
-*  If the user-defined Alertmanager instance is enabled, cluster administrators can also define the main configuration of the user-defined Alertmanager instance.
-
 * When a namespace is excluded from user-defined monitoring, `AlertmanagerConfig` resources in the namespace cease to be part of the Alertmanager configuration.
+====

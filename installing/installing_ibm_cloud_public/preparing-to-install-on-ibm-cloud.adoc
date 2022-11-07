@@ -6,7 +6,7 @@ include::_attributes/common-attributes.adoc[]
 
 toc::[]
 
-The installation workflows documented in this section are for IBM Cloud VPC infrastructure environments. IBM Cloud Classic is not supported at this time. For more information on the difference between Classic and VPC infrastructures, see IBM's link:https://cloud.ibm.com/docs/cloud-infrastructure?topic=cloud-infrastructure-compare-infrastructure[documentation].
+The installation workflows documented in this section are for IBM Cloud VPC infrastructure environments. IBM Cloud Classic is not supported at this time. For more information about the difference between Classic and VPC infrastructures, see the IBM link:https://cloud.ibm.com/docs/cloud-infrastructure?topic=cloud-infrastructure-compare-infrastructure[documentation].
 
 [id="prerequisites_preparing-to-install-on-ibm-cloud"]
 == Prerequisites
@@ -15,13 +15,10 @@ The installation workflows documented in this section are for IBM Cloud VPC infr
 
 * You read the documentation on xref:../../installing/installing-preparing.adoc#installing-preparing[selecting a cluster installation method and preparing it for users].
 
-:FeatureName: IBM Cloud using installer-provisioned infrastructure
-include::snippets/technology-preview.adoc[]
-
 [id="requirements-for-installing-ocp-on-ibm-cloud"]
 == Requirements for installing {product-title} on IBM Cloud VPC
 
-Before installing {product-title} on IBM Cloud VPC, you must create a service account and configure an IBM Cloud VPC account. See xref:../../installing/installing_ibm_cloud_public/installing-ibm-cloud-account.adoc#installing-ibm-cloud-account[Configuring an IBM Cloud VPC account] for details about creating an account, enabling API services, configuring DNS, IBM Cloud VPC account limits, and supported IBM Cloud VPC regions.
+Before installing {product-title} on IBM Cloud VPC, you must create a service account and configure an IBM Cloud account. See xref:../../installing/installing_ibm_cloud_public/installing-ibm-cloud-account.adoc#installing-ibm-cloud-account[Configuring an IBM Cloud account] for details about creating an account, enabling API services, configuring DNS, IBM Cloud account limits, and supported IBM Cloud VPC regions.
 
 You must manually manage your cloud credentials when installing a cluster to IBM Cloud VPC. Do this by configuring the Cloud Credential Operator (CCO) for manual mode before you install the cluster. For more information, see xref:../../installing/installing_ibm_cloud_public/configuring-iam-ibm-cloud.adoc#configuring-iam-ibm-cloud[Configuring IAM for IBM Cloud VPC].
 
@@ -41,6 +38,8 @@ You can install a cluster on IBM Cloud VPC infrastructure that is provisioned by
 
 * **xref:../../installing/installing_ibm_cloud_public/installing-ibm-cloud-network-customizations.adoc#installing-ibm-cloud-network-customizations[Installing a cluster on IBM Cloud VPC with network customizations]**: You can customize your {product-title} network configuration during installation, so that your cluster can coexist with your existing IP address allocations and adhere to your network requirements.
 
+* **xref:../../installing/installing_ibm_cloud_public/installing-ibm-cloud-vpc.adoc#installing-ibm-cloud-vpc[Installing a cluster on IBM Cloud VPC into an existing VPC]**: You can install {product-title} on an existing IBM  Virtual Private Cloud (VPC). You can use this installation method if you have constraints set by the guidelines of your company, such as limits when creating new accounts or infrastructure.
+
 [id="next-steps_preparing-to-install-on-ibm-cloud"]
 == Next steps
-* xref:../../installing/installing_ibm_cloud_public/installing-ibm-cloud-account.adoc#installing-ibm-cloud-account[Configuring an IBM Cloud VPC account]
+* xref:../../installing/installing_ibm_cloud_public/installing-ibm-cloud-account.adoc#installing-ibm-cloud-account[Configuring an IBM Cloud account]

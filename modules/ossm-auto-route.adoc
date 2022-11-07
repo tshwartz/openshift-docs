@@ -2,6 +2,7 @@
 // * service_mesh/v2x/ossm-traffic-manage.adoc
 //
 
+:_content-type: PROCEDURE
 [id="ossm-auto-route-create-subdomains_{context}"]
 = Creating subdomain routes
 
@@ -26,7 +27,7 @@ spec:
     - bookinfo.example.com
 ----
 
-Then, the following OpenShift Routes are created automatically. You can check that the routes are created with the following command. In this example, `istio-system` is the name of the control plane project.
+The `Gateway` resource creates the following OpenShift routes. You can check that the routes are created by using the following command. In this example, `istio-system` is the name of the {SMProductShortName} control plane project.
 
 [source,terminal]
 ----
@@ -41,4 +42,4 @@ gateway1-lvlfn bookinfo.example.com        istio-ingressgateway   <all>         
 gateway1-scqhv www.bookinfo.com            istio-ingressgateway   <all>               None
 ----
 
-If the gateway is deleted, {SMProductName} deletes the routes. However, routes created manually are never modified by {SMProductName}.
+If you delete the gateway, {SMProductName} deletes the routes. However, routes you have manually created are never modified by {SMProductName}.

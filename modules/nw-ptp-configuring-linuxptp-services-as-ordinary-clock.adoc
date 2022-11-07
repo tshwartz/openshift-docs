@@ -10,7 +10,7 @@ You can configure `linuxptp` services (`ptp4l`, `phc2sys`) as ordinary clock by 
 
 [NOTE]
 ====
-Use the following example `PtpConfig` CR as the basis to `linuxptp` services as ordinary clock for your particular hardware and environment. This example CR also configures PTP fast events by setting appropriate values for `ptp4lOpts`, `ptp4lConf` and `ptpClockThreshold`. `ptpClockThreshold` is used only when events are enabled.
+Use the following example `PtpConfig` CR as the basis to configure `linuxptp` services as ordinary clock for your particular hardware and environment. This example CR also configures PTP fast events by setting appropriate values for `ptp4lOpts`, `ptp4lConf` and `ptpClockThreshold`. `ptpClockThreshold` is used only when events are enabled.
 ====
 
 .Prerequisites
@@ -54,7 +54,7 @@ spec:
       freq_est_interval                  1
       dscp_event                         0
       dscp_general                       0
-      dataset_comparison                 ieee1588
+      dataset_comparison                 G.8275.x
       G.8275.defaultDS.localPriority     128
       #
       # Port Data Set
@@ -138,7 +138,7 @@ spec:
       userDescription                    ;
       timeSource                         0xA0
     ptpSchedulingPolicy:                 SCHED_OTHER    <10>
-    ptpSchedulingPriority:               65             <11>
+    ptpSchedulingPriority:               10             <11>
   ptpClockThreshold:                                    <12>
     holdOverTimeout:                     5
     maxOffsetThreshold:                  100
@@ -155,13 +155,13 @@ spec:
 <3> Specify a unique name for the profile object.
 <4> Specify the network interface to be used by the `ptp4l` service, for example `ens787f1`.
 <5> Specify system config options for the `ptp4l` service, for example `-2` to select the IEEE 802.3 network transport. The options should not include the network interface name `-i <interface>` and service config file `-f /etc/ptp4l.conf` because the network interface name and the service config file are automatically appended. Append `--summary_interval -4` to use PTP fast events with this interface.
-<6> Specify system config options for the `phc2sys` service. If this field is empty the PTP Operator does not start the `phc2sys` service. For Intel Columbiaville 800 Series NICs, set `phc2sysOpts` options to `-a -r -m -n 24 -N 8 -R 16`.
+<6> Specify system config options for the `phc2sys` service. If this field is empty the PTP Operator does not start the `phc2sys` service. For Intel Columbiaville 800 Series NICs, set `phc2sysOpts` options to `-a -r -m -n 24 -N 8 -R 16`. `-m` prints messages to `stdout`. The `linuxptp-daemon` `DaemonSet` parses the logs and generates Prometheus metrics.
 <7> Specify a string that contains the configuration to replace the default `/etc/ptp4l.conf` file. To use the default configuration, leave the field empty.
 <8> For Intel Columbiaville 800 Series NICs, set `tx_timestamp_timeout` to `50`.
 <9> For Intel Columbiaville 800 Series NICs, set `boundary_clock_jbod` to `0`.
 <10> Scheduling policy for `ptp4l` and `phc2sys` processes. Default value is `SCHED_OTHER`. Use `SCHED_FIFO` on systems that support FIFO scheduling.
-<11> Integer value from 1-65 used to set FIFO priority for `ptp4l` and `phc2sys` processes. Required if `SCHED_FIFO` is set for `ptpSchedulingPolicy`.
-<12> Optional. If `ptpClockThreshold` stanza is not present, default values are used for `ptpClockThreshold` fields. Stanza shows default `ptpClockThreshold` values.
+<11> Integer value from 1-65 used to set FIFO priority for `ptp4l` and `phc2sys` processes when `ptpSchedulingPolicy` is set to `SCHED_FIFO`. The `ptpSchedulingPriority` field is not used when `ptpSchedulingPolicy` is set to `SCHED_OTHER`.
+<12> Optional. If the `ptpClockThreshold` stanza is not present, default values are used for the `ptpClockThreshold` fields. The stanza shows default `ptpClockThreshold` values. The `ptpClockThreshold` values configure how long after the PTP master clock is disconnected before PTP events are triggered. `holdOverTimeout` is the time value in seconds before the PTP clock event state changes to `FREERUN` when the PTP master clock is disconnected. The `maxOffsetThreshold` and `minOffsetThreshold` settings configure offset values in nanoseconds that compare against the values for `CLOCK_REALTIME` (`phc2sys`) or master offset (`ptp4l`). When the `ptp4l` or `phc2sys` offset value is outside this range, the PTP clock state is set to `FREERUN`. When the offset value is within this range, the PTP clock state is set to `LOCKED`.
 <13> Specify an array of one or more `recommend` objects that define rules on how the `profile` should be applied to nodes.
 <14> Specify the `profile` object name defined in the `profile` section.
 <15> Set `priority` to `0` for ordinary clock.

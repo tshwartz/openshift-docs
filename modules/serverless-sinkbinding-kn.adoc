@@ -6,14 +6,14 @@
 [id="serverless-sinkbinding-kn_{context}"]
 = Creating a sink binding by using the Knative CLI
 
-You can use the `kn source binding create` command to create a sink binding by using the `kn` CLI. Using the `kn` CLI to create event sources provides a more streamlined and intuitive user interface than modifying YAML files directly.
+You can use the `kn source binding create` command to create a sink binding by using the Knative (`kn`) CLI. Using the Knative CLI to create event sources provides a more streamlined and intuitive user interface than modifying YAML files directly.
 
 .Prerequisites
 
 * The {ServerlessOperatorName}, Knative Serving and Knative Eventing are installed on the cluster.
 * You have created a project or have access to a project with the appropriate roles and permissions to create applications and other workloads in {product-title}.
 * Install the Knative (`kn`) CLI.
-* Install the OpenShift (`oc`) CLI.
+* Install the OpenShift CLI (`oc`).
 
 [NOTE]
 ====

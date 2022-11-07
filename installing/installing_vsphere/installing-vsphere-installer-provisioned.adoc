@@ -9,6 +9,8 @@ toc::[]
 In {product-title} version {product-version}, you can install a cluster on your
 VMware vSphere instance by using installer-provisioned infrastructure.
 
+include::snippets/vcenter-support.adoc[]
+
 == Prerequisites
 
 * You reviewed details about the xref:../../architecture/architecture-installation.adoc#architecture-installation[{product-title} installation and update] processes.
@@ -27,6 +29,8 @@ Be sure to also review this site list if you are configuring a proxy.
 include::modules/cluster-entitlements.adoc[leveloffset=+1]
 
 include::modules/installation-vsphere-infrastructure.adoc[leveloffset=+1]
+
+include::modules/installation-vsphere-installer-network-requirements.adoc[leveloffset=+1]
 
 include::modules/vmware-csi-driver-reqs.adoc[leveloffset=+1]
 

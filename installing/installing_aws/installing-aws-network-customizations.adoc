@@ -45,7 +45,8 @@ include::modules/installation-configuration-parameters.adoc[leveloffset=+2]
 
 include::modules/installation-minimum-resource-requirements.adoc[leveloffset=+2]
 
-include::modules/installation-supported-aws-machine-types.adoc[leveloffset=+2]
+include::modules/installation-aws-tested-machine-types.adoc[leveloffset=+2]
+include::modules/installation-aws-arm-tested-machine-types.adoc[leveloffset=+2]
 
 include::modules/installation-aws-config-yaml.adoc[leveloffset=+2]
 
@@ -65,12 +66,11 @@ include::modules/nw-aws-nlb-new-cluster.adoc[leveloffset=+1]
 
 include::modules/configuring-hybrid-ovnkubernetes.adoc[leveloffset=+1]
 
-////
+
 [NOTE]
 ====
 For more information on using Linux and Windows nodes in the same cluster, see xref:../../windows_containers/understanding-windows-container-workloads.adoc#understanding-windows-container-workloads[Understanding Windows container workloads].
 ====
-////
 
 include::modules/installation-launching-installer.adoc[leveloffset=+1]
 

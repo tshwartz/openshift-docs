@@ -6,11 +6,9 @@
 [id="serverless-ossm-setup_{context}"]
 = Integrating {SMProductShortName} with {ServerlessProductName}
 
-You can integrate {SMProductShortName} with {ServerlessProductName} without using Kourier by completing the following procedure.
+You can integrate {SMProductShortName} with {ServerlessProductName} without using Kourier as the default ingress. To do this, do not install the Knative Serving component before completing the following procedure. There are additional steps required when creating the `KnativeServing` custom resource definition (CRD) to integrate Knative Serving with {SMProductShortName}, which are not covered in the general Knative Serving installation procedure. This procedure might be useful if you want to integrate {SMProductShortName} as the default and only ingress for your {ServerlessProductName} installation.
 
 .Prerequisites
-
-* You have installed {SMProductName}. {ServerlessProductName} with {SMProductShortName} only is supported for use with {SMProductName} version 2.0.5 or higher.
 
 ifdef::openshift-enterprise[]
 * You have access to an {product-title} account with cluster administrator access.
@@ -20,18 +18,20 @@ ifdef::openshift-dedicated,openshift-rosa[]
 * You have access to an {product-title} account with cluster or dedicated administrator access.
 endif::[]
 
-* You have installed the {ServerlessOperatorName}.
+* You have created a project or have access to a project with the appropriate roles and permissions to create applications and other workloads in {product-title}.
+
+* Install the {SMProductName} Operator and create a `ServiceMeshControlPlane` resource in the `istio-system` namespace. If you want to use mTLS functionality, you must also set the `spec.security.dataPlane.mtls` field for the `ServiceMeshControlPlane` resource to `true`.
 +
 [IMPORTANT]
 ====
-Do not install the Knative Serving component before completing the following procedures. There are additional steps required when creating the `KnativeServing` custom resource defintion (CRD) to integrate Knative Serving with {SMProductShortName}, which are not covered in the general Knative Serving installation procedure of the _Administration guide_.
+Using {ServerlessProductName} with {SMProductShortName} is only supported with {SMProductName} version 2.0.5 or later.
 ====
+
+* Install the {ServerlessOperatorName}.
+
 * Install the OpenShift CLI (`oc`).
-* You have created a project or have access to a project with the appropriate roles and permissions to create applications and other workloads in {product-title}.
 
 .Procedure
-
-. Create a `ServiceMeshControlPlane` object in the `istio-system` namespace. If you want to use the mTLS functionality, this must be enabled for the `istio-system` namespace.
 
 . Add the namespaces that you would like to integrate with {SMProductShortName} to the `ServiceMeshMemberRoll` object as members:
 +
@@ -117,7 +117,7 @@ spec:
      port: 80
      targetPort: 8081
 ----
-<1> Add the name of your wildcard certificate.
+<1> Add the name of the secret that contains the wildcard certificate.
 <2> The `knative-local-gateway` serves HTTP traffic. Using HTTP means that traffic coming from outside of {SMProductShortName}, but using an internal hostname, such as `example.default.svc.cluster.local`, is not encrypted. You can set up encryption for this path by creating another wildcard certificate and an additional gateway that uses a different `protocol` spec.
 +
 .Example `knative-local-gateway` object using HTTPS

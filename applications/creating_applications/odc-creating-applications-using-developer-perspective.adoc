@@ -57,7 +57,6 @@ endif::[]
 To create applications using the *Developer* perspective ensure that:
 
 * You have xref:../../web_console/web-console.adoc#web-console[logged in to the web console].
-* You are in the xref:../../web_console/odc-about-developer-perspective.adoc#odc-about-developer-perspective[*Developer* perspective].
 * You have created a project or have access to a project with the appropriate xref:../../authentication/using-rbac.adoc#default-roles_using-rbac[roles and permissions] to create applications and other workloads in {product-title}.
 
 ifdef::openshift-enterprise,openshift-webscale[]
@@ -78,6 +77,8 @@ include::modules/odc-deploying-java-applications.adoc[leveloffset=+1]
 include::modules/odc-using-the-devfile-registry.adoc[leveloffset=+1]
 
 include::modules/odc-using-the-developer-catalog-to-add-services-or-components.adoc[leveloffset=+1]
+
+include::modules/odc-exporting-an-application-to-another-project-or-cluster.adoc[leveloffset=+1]
 
 [role="_additional-resources"]
 [id="additional-resources_odc-creating-applications-using-developer-perspective"]

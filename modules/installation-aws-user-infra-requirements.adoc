@@ -32,11 +32,35 @@ Alternatively, you can manually create the components or you can reuse existing 
 * IAM roles
 * S3 buckets
 
-If you are working in a disconnected environment or use a proxy, you cannot reach the public IP addresses for EC2 and ELB endpoints. To reach these endpoints, you must create a VPC endpoint and attach it to the subnet that the clusters are using. Create the following endpoints:
+If you are working in a disconnected environment, you are unable to reach the public IP addresses for EC2, ELB, and S3 endpoints. Depending on the level to which you want to restrict internet traffic during the installation, the following configuration options are available:
+
+[discrete]
+[id="create-vpc-endpoints_{context}"]
+=== Option 1: Create VPC endpoints
+
+Create a VPC endpoint and attach it to the subnets that the clusters are using. Name the endpoints as follows:
 
 * `ec2.<region>.amazonaws.com`
 * `elasticloadbalancing.<region>.amazonaws.com`
 * `s3.<region>.amazonaws.com`
+
+With this option, network traffic remains private between your VPC and the required AWS services.
+
+[discrete]
+[id="create-proxy-without-vpc-endpoints_{context}"]
+=== Option 2: Create a proxy without VPC endpoints
+As part of the installation process, you can configure an HTTP or HTTPS proxy. With this option, internet traffic goes through the proxy to reach the required AWS services.
+
+[discrete]
+[id="create-proxy-with-vpc-endpoints_{context}"]
+=== Option 3: Create a proxy with VPC endpoints
+As part of the installation process, you can configure an HTTP or HTTPS proxy with VPC endpoints. Create a VPC endpoint and attach it to the subnets that the clusters are using. Name the endpoints as follows:
+
+* `ec2.<region>.amazonaws.com`
+* `elasticloadbalancing.<region>.amazonaws.com`
+* `s3.<region>.amazonaws.com`
+
+When configuring the proxy in the `install-config.yaml` file, add these endpoints to the `noProxy` field. With this option, the proxy prevents the cluster from accessing the internet directly. However, network traffic remains private between your VPC and the required AWS services.
 
 .Required VPC components
 
@@ -534,8 +558,8 @@ or the following individual permissions.
 You need `AWS::EC2::Instance` objects for the following machines:
 
 * A bootstrap machine. This machine is required during installation, but you can remove it after your cluster deploys.
-* Three control plane machines. The control plane machines are not governed by a machine set.
-* Compute machines. You must create at least two compute machines, which are also known as worker machines, during installation. These machines are not governed by a machine set.
+* Three control plane machines. The control plane machines are not governed by a compute machine set.
+* Compute machines. You must create at least two compute machines, which are also known as worker machines, during installation. These machines are not governed by a compute machine set.
 
 ////
 You can also create and control them by using a MachineSet after your

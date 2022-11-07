@@ -8,6 +8,9 @@
 ifeval::["{context}" == "cco-mode-sts"]
 :aws-sts:
 endif::[]
+ifeval::["{context}" == "sts-mode-upgrading"]
+:aws-sts:
+endif::[]
 ifeval::["{context}" == "configuring-iam-ibm-cloud"]
 :ibm-cloud:
 endif::[]
@@ -17,16 +20,27 @@ endif::[]
 ifeval::["{context}" == "cco-mode-gcp-workload-identity"]
 :google-cloud-platform:
 endif::[]
+ifeval::["{context}" == "wif-mode-upgrading"]
+:google-cloud-platform:
+endif::[]
+ifeval::["{context}" == "preparing-to-install-on-nutanix"]
+:nutanix:
+endif::[]
 
 :_content-type: PROCEDURE
 [id="cco-ccoctl-configuring_{context}"]
 = Configuring the Cloud Credential Operator utility
+ifdef::nutanix[]
+The Cloud Credential Operator (CCO) manages cloud provider credentials as Kubernetes custom resource definitions (CRDs). To install a cluster on Nutanix, you must set the CCO to `manual` mode as part of the installation process.
+endif::nutanix[]
 
+ifndef::alibabacloud[]
 To create and manage cloud credentials from outside of the cluster when the Cloud Credential Operator (CCO) is operating in
+ifdef::ibm-cloud,nutanix[manual mode,]
 ifdef::aws-sts[manual mode with STS,]
-ifdef::ibm-cloud[manual mode,]
 ifdef::google-cloud-platform[manual mode with GCP Workload Identity,]
 extract and prepare the CCO utility (`ccoctl`) binary.
+endif::alibabacloud[]
 
 ifdef::alibabacloud[]
 To assign RAM users and policies that provide long-lived RAM AccessKeys (AKs) for each in-cluster component, extract and prepare the {product-title} Cloud Credential Operator (CCO) utility (`ccoctl`) binary.
@@ -81,18 +95,18 @@ endif::aws-sts[]
 
 .Procedure
 
-. Obtain the {product-title} release image:
+. Obtain the {product-title} release image by running the following command:
 +
 [source,terminal]
 ----
 $ RELEASE_IMAGE=$(./openshift-install version | awk '/release image/ {print $3}')
 ----
 
-. Get the CCO container image from the {product-title} release image:
+. Obtain the CCO container image from the {product-title} release image by running the following command:
 +
 [source,terminal]
 ----
-$ CCO_IMAGE=$(oc adm release info --image-for='cloud-credential-operator' $RELEASE_IMAGE)
+$ CCO_IMAGE=$(oc adm release info --image-for='cloud-credential-operator' $RELEASE_IMAGE -a ~/.pull-secret)
 ----
 +
 [NOTE]
@@ -100,14 +114,14 @@ $ CCO_IMAGE=$(oc adm release info --image-for='cloud-credential-operator' $RELEA
 Ensure that the architecture of the `$RELEASE_IMAGE` matches the architecture of the environment in which you will use the `ccoctl` tool.
 ====
 
-. Extract the `ccoctl` binary from the CCO container image within the {product-title} release image:
+. Extract the `ccoctl` binary from the CCO container image within the {product-title} release image by running the following command:
 +
 [source,terminal]
 ----
 $ oc image extract $CCO_IMAGE --file="/usr/bin/ccoctl" -a ~/.pull-secret
 ----
 
-. Change the permissions to make `ccoctl` executable:
+. Change the permissions to make `ccoctl` executable by running the following command:
 +
 [source,terminal]
 ----
@@ -116,7 +130,7 @@ $ chmod 775 ccoctl
 
 .Verification
 
-* To verify that `ccoctl` is ready to use, display the help file:
+* To verify that `ccoctl` is ready to use, display the help file by running the following command:
 +
 [source,terminal]
 ----
@@ -138,6 +152,7 @@ Available Commands:
   gcp          Manage credentials objects for Google cloud
   help         Help about any command
   ibmcloud     Manage credentials objects for IBM Cloud
+  nutanix      Manage credentials objects for Nutanix
 
 Flags:
   -h, --help   help for ccoctl
@@ -148,6 +163,9 @@ Use "ccoctl [command] --help" for more information about a command.
 ifeval::["{context}" == "cco-mode-sts"]
 :!aws-sts:
 endif::[]
+ifeval::["{context}" == "sts-mode-upgrading"]
+:!aws-sts:
+endif::[]
 ifeval::["{context}" == "configuring-iam-ibm-cloud"]
 :!ibm-cloud:
 endif::[]
@@ -156,4 +174,10 @@ ifeval::["{context}" == "manually-creating-alibaba-ram"]
 endif::[]
 ifeval::["{context}" == "cco-mode-gcp-workload-identity"]
 :!google-cloud-platform:
+endif::[]
+ifeval::["{context}" == "wif-mode-upgrading"]
+:!google-cloud-platform:
+endif::[]
+ifeval::["{context}" == "preparing-to-install-on-nutanix"]
+:!nutanix:
 endif::[]

@@ -1,25 +1,34 @@
 :_content-type: ASSEMBLY
-[id="platform-operators-ref"]
-= Platform Operators reference
+[id="cluster-operators-ref"]
+= Cluster Operators reference
 include::_attributes/common-attributes.adoc[]
-:context: platform-operators-ref
+:context: cluster-operators-ref
 
 toc::[]
 
-This reference guide indexes the _platform Operators_, also known as cluster Operators, shipped by Red Hat that serve as the architectural foundation for {product-title}. Platform Operators are installed by default, unless otherwise noted, and are managed by the Cluster Version Operator (CVO). For more details on the control plane architecture, see xref:../architecture/control-plane.adoc#operators-overview_control-plane[Operators in {product-title}].
+This reference guide indexes the _cluster Operators_ shipped by Red Hat that serve as the architectural foundation for {product-title}. Cluster Operators are installed by default, unless otherwise noted, and are managed by the Cluster Version Operator (CVO). For more details on the control plane architecture, see xref:../architecture/control-plane.adoc#operators-overview_control-plane[Operators in {product-title}].
 
-Cluster administrators can view platform Operators in the {product-title} web console from the *Administration* -> *Cluster Settings* page.
+Cluster administrators can view cluster Operators in the {product-title} web console from the *Administration* -> *Cluster Settings* page.
 
 [NOTE]
 ====
-Platform operators are not managed by Operator Lifecycle Manager (OLM) and OperatorHub. OLM and OperatorHub are part of the link:https://operatorframework.io/[Operator Framework] used in {product-title} for installing and running optional xref:../architecture/control-plane.adoc#olm-operators_control-plane[add-on Operators].
+Cluster Operators are not managed by Operator Lifecycle Manager (OLM) and OperatorHub. OLM and OperatorHub are part of the link:https://operatorframework.io/[Operator Framework] used in {product-title} for installing and running optional xref:../architecture/control-plane.adoc#olm-operators_control-plane[add-on Operators].
 ====
+
+include::modules/baremetal-event-relay.adoc[leveloffset=+1]
+
+[role="_additional-resources"]
+[discrete]
+[id="additional-resources_cluster-op-ref-baremetal"]
+=== Additional resources
+
+* xref:../monitoring/using-rfhe.adoc#using-rfhe[Monitoring Redfish hardware events]
 
 include::modules/cloud-credential-operator.adoc[leveloffset=+1]
 
-[discrete]
 [role="_additional-resources"]
-[id="platform-operators-ref-cco-addtl-resources"]
+[discrete]
+[id="additional-resources_cluster-op-ref-cco"]
 === Additional resources
 
 * xref:../rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1.adoc#credentialsrequest-cloudcredential-openshift-io-v1[CredentialsRequest custom resource]
@@ -28,6 +37,7 @@ include::modules/cloud-credential-operator.adoc[leveloffset=+1]
 include::modules/cluster-authentication-operator.adoc[leveloffset=+1]
 include::modules/cluster-autoscaler-operator.adoc[leveloffset=+1]
 include::modules/cluster-cloud-controller-manager-operator.adoc[leveloffset=+1]
+include::modules/cluster-capi-operator.adoc[leveloffset=+1]
 include::modules/cluster-config-operator.adoc[leveloffset=+1]
 include::modules/cluster-csi-snapshot-controller-operator.adoc[leveloffset=+1]
 include::modules/cluster-image-registry-operator.adoc[leveloffset=+1]
@@ -37,6 +47,14 @@ include::modules/cluster-network-operator.adoc[leveloffset=+1]
 include::modules/cluster-samples-operator.adoc[leveloffset=+1]
 include::modules/cluster-storage-operator.adoc[leveloffset=+1]
 include::modules/cluster-version-operator.adoc[leveloffset=+1]
+
+[role="_additional-resources"]
+[discrete]
+[id="additional-resources_cluster-op-ref-cvo"]
+=== Additional resources
+
+* xref:../architecture/control-plane.adoc#operators-overview_control-plane[Operators in {product-title}]
+
 include::modules/console-operator.adoc[leveloffset=+1]
 include::modules/cluster-dns-operator.adoc[leveloffset=+1]
 include::modules/etcd-operator.adoc[leveloffset=+1]
@@ -44,9 +62,11 @@ include::modules/ingress-operator.adoc[leveloffset=+1]
 include::modules/insights-operator.adoc[leveloffset=+1]
 
 [role="_additional-resources"]
-.Additional resources
+[discrete]
+[id="additional-resources_cluster-op-ref-insights"]
+=== Additional resources
 
-* See xref:../support/remote_health_monitoring/about-remote-health-monitoring.adoc[About remote health monitoring] for details about Insights Operator and Telemetry.
+* xref:../support/remote_health_monitoring/about-remote-health-monitoring.adoc#about-remote-health-monitoring[About remote health monitoring] for details about Insights Operator and Telemetry
 
 include::modules/kube-apiserver-operator.adoc[leveloffset=+1]
 include::modules/kube-controller-manager-operator.adoc[leveloffset=+1]
@@ -59,7 +79,7 @@ include::modules/node-tuning-operator.adoc[leveloffset=+1]
 
 [discrete]
 [role="_additional-resources"]
-[id="platform-operators-ref-nto-addtl-resources"]
+[id="cluster-operators-ref-nto-addtl-resources"]
 === Additional resources
 
 * xref:../scalability_and_performance/cnf-low-latency-tuning.adoc#cnf-understanding-low-latency_cnf-master[Low latency tuning of OCP nodes]
@@ -67,7 +87,7 @@ include::modules/node-tuning-operator.adoc[leveloffset=+1]
 include::modules/openshift-apiserver-operator.adoc[leveloffset=+1]
 include::modules/cluster-openshift-controller-manager-operators.adoc[leveloffset=+1]
 
-[id="platform-operators-ref-olm"]
+[id="cluster-operators-ref-olm"]
 == Operator Lifecycle Manager Operators
 [discrete]
 include::modules/olm-overview.adoc[leveloffset=+2]
@@ -82,15 +102,17 @@ include::modules/olm-arch-catalog-registry.adoc[leveloffset=+2]
 
 [role="_additional-resources"]
 [discrete]
-[id="platform-operators-ref-olm-addtl-resources"]
+[id="additional-resources_cluster-op-ref-olm"]
 === Additional resources
 
-* For more information, see the sections on xref:../operators/understanding/olm/olm-understanding-olm.adoc#olm-understanding-olm[understanding Operator Lifecycle Manager (OLM)].
+* xref:../operators/understanding/olm/olm-understanding-olm.adoc#olm-understanding-olm[Understanding Operator Lifecycle Manager (OLM)]
 
 include::modules/openshift-service-ca-operator.adoc[leveloffset=+1]
 include::modules/vsphere-problem-detector-operator.adoc[leveloffset=+1]
 
 [role="_additional-resources"]
-.Additional resources
+[discrete]
+[id="additional-resources_cluster-op-ref-vpd"]
+=== Additional resources
 
-* For more details, see xref:../installing/installing_vsphere/using-vsphere-problem-detector-operator.adoc#using-vsphere-problem-detector-operator[Using the vSphere Problem Detector Operator].
+* xref:../installing/installing_vsphere/using-vsphere-problem-detector-operator.adoc#using-vsphere-problem-detector-operator[Using the vSphere Problem Detector Operator]

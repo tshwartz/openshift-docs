@@ -75,6 +75,14 @@ This SCC allows host file system access as any UID, including UID 0. Grant with 
 If additional workloads are run on control plane hosts, use caution when providing access to `hostnetwork`. A workload that runs `hostnetwork` on a control plane host is effectively root on the cluster and must be trusted accordingly.
 ====
 
+|`hostnetwork-v2`
+| Like the `hostnetwork` SCC, but with the following differences:
+
+* `ALL` capabilities are dropped from containers.
+* The `NET_BIND_SERVICE` capability can be added explicitly.
+* `seccompProfile` is set to `runtime/default` by default.
+* `allowPrivilegeEscalation` must be unset or set to `false` in security contexts.
+
 |`node-exporter`
 |Used for the Prometheus node exporter.
 
@@ -86,6 +94,14 @@ endif::[]
 
 |`nonroot`
 |Provides all features of the `restricted` SCC, but allows users to run with any non-root UID. The user must specify the UID or it must be specified in the manifest of the container runtime.
+
+|`nonroot-v2`
+| Like the `nonroot` SCC, but with the following differences:
+
+* `ALL` capabilities are dropped from containers.
+* The `NET_BIND_SERVICE` capability can be added explicitly.
+* `seccompProfile` is set to `runtime/default` by default.
+* `allowPrivilegeEscalation` must be unset or set to `false` in security contexts.
 
 ifndef::openshift-dedicated[]
 |`privileged`
@@ -116,7 +132,7 @@ Setting `privileged: true` in the pod specification does not necessarily select 
 endif::[]
 
 |`restricted`
-|Denies access to all host features and requires pods to be run with a UID, and SELinux context that are allocated to the namespace. This is the most restrictive SCC provided by a new installation and will be used by default for authenticated users.
+|Denies access to all host features and requires pods to be run with a UID, and SELinux context that are allocated to the namespace.
 
 The `restricted` SCC:
 
@@ -127,9 +143,21 @@ The `restricted` SCC:
 * Allows pods to use any FSGroup
 * Allows pods to use any supplemental group
 
+In clusters that were upgraded from {product-title} 4.10 or earlier, this SCC is available for use by any authenticated user. The `restricted` SCC is no longer available to users of new {product-title} 4.11 installations, unless the access is explicitly granted.
+
+|`restricted-v2`
+| Like the `restricted` SCC, but with the following differences:
+
+* `ALL` capabilities are dropped from containers.
+* The `NET_BIND_SERVICE` capability can be added explicitly.
+* `seccompProfile` is set to `runtime/default` by default.
+* `allowPrivilegeEscalation` must be unset or set to `false` in security contexts.
+
+This is the most restrictive SCC provided by a new installation and will be used by default for authenticated users.
+
 [NOTE]
 ====
-The restricted SCC is the most restrictive of the SCCs that ship by default with the system. However, you can create a custom SCC that is even more restrictive. For example, you can create an SCC that restricts `readOnlyRootFS` to `true` and `allowPrivilegeEscalation` to `false`.
+The `restricted-v2` SCC is the most restrictive of the SCCs that is included by default with the system. However, you can create a custom SCC that is even more restrictive. For example, you can create an SCC that restricts `readOnlyRootFilesystem` to `true`.
 ====
 
 |===
@@ -178,7 +206,7 @@ The containers use the capabilities from this default list, but pod manifest aut
 
 [NOTE]
 ====
-You can drop all capabilites from containers by setting the `requiredDropCapabilities` parameter to `ALL`.
+You can drop all capabilites from containers by setting the `requiredDropCapabilities` parameter to `ALL`. This is what the `restricted-v2` SCC does.
 ====
 
 [id="authorization-SCC-strategies_{context}"]

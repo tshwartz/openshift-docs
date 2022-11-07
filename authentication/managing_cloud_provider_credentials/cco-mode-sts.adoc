@@ -56,6 +56,7 @@ metadata:
 stringData:
   credentials: |-
     [default]
+    sts_regional_endpoints = regional
     role_name: <operator-role-name> <3>
     web_identity_token_file: <path-to-token> <4>
 ----
@@ -111,15 +112,10 @@ The release image for the version of {product-title} that you are upgrading to c
 
 :context: sts-mode-upgrading
 
-//Task part 1: Configuring the Cloud Credential Operator utility
 include::modules/cco-ccoctl-configuring.adoc[leveloffset=+2]
 
 include::modules/cco-ccoctl-upgrading.adoc[leveloffset=+2]
 
 include::modules/manually-maintained-credentials-upgrade.adoc[leveloffset=+2]
 
-//Task part 3: Run the OCP installer
-//include::modules/sts-mode-installing-manual-run-installer.adoc[leveloffset=+2]
-
-//Task part 4: Verify that the cluster is using short-lived credentials
-//include::modules/sts-mode-installing-verifying.adoc[leveloffset=+2]
+:context: cco-mode-sts

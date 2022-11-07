@@ -47,10 +47,18 @@ $ oc expose pod/hello-openshift
 ----
 $ oc expose svc hello-openshift
 ----
+
+.Verification
+
+* To verify that the `route` resource that you created, run the following command:
 +
-If you examine the resulting `Route` resource, it should look similar to the following:
-+
-.YAML definition of the created unsecured route:
+[source,terminal]
+----
+$ oc get routes -o yaml <name of resource> <1>
+----
+<1> In this example, the route is named `hello-openshift`.
+
+.Sample YAML definition of the created unsecured route:
 [source,yaml]
 ----
 apiVersion: route.openshift.io/v1
@@ -60,12 +68,14 @@ metadata:
 spec:
   host: hello-openshift-hello-openshift.<Ingress_Domain> <1>
   port:
-    targetPort: 8080
+    targetPort: 8080 <2>
   to:
     kind: Service
     name: hello-openshift
 ----
 <1> `<Ingress_Domain>` is the default ingress domain name.
+<2> `targetPort` is the target port on pods that is selected by the service that this route points to.  
+
 +
 [NOTE]
 ====

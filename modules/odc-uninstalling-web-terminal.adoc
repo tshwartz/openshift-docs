@@ -32,7 +32,7 @@ Prior to {product-title} 4.8, the Web Terminal Operator used different CRDs to p
 .. Click the Options menu {kebab} for the Web Terminal Operator, and then select *Uninstall Operator*.
 .. In the *Uninstall Operator* confirmation dialog box, click *Uninstall* to remove the Operator, Operator deployments, and pods from the cluster. The Operator stops running and no longer receives updates.
 +
-. Remove the CRDs used by the Operator.
+. Remove the CRs used by the Operator.
 +
 [source,terminal]
 ----
@@ -52,7 +52,7 @@ Use the CLI to delete the custom resource definitions (CRDs) and additional reso
 
 [IMPORTANT]
 ====
-The DevWorkspace Operator functions as a standalone Operator and may be required as a dependency for other Operators installed on the cluster (for example, the CodeReady Workspaces Operator may depend on it). Follow the steps below only if you are sure the DevWorkspace Operator is no longer needed.
+The DevWorkspace Operator functions as a standalone Operator and may be required as a dependency for other Operators installed on the cluster (for example, the {openshift-dev-spaces-productname} Operator may depend on it). Follow the steps below only if you are sure the DevWorkspace Operator is no longer needed.
 ====
 
 .Procedure

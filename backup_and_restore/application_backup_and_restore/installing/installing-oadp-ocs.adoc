@@ -6,11 +6,12 @@ include::_attributes/common-attributes.adoc[]
 :installing-oadp-ocs:
 :credentials: cloud-credentials
 :provider: gcp
-:velero-domain: velero.io
 
 toc::[]
 
 You install the OpenShift API for Data Protection (OADP) with {rh-storage} by installing the OADP Operator and configuring a backup location and a snapshot location. Then, you install the Data Protection Application.
+
+include::snippets/oadp-mtc-operator.adoc[]
 
 You can configure xref:../../../backup_and_restore/application_backup_and_restore/installing/installing-oadp-mcg.adoc#installing-oadp-mcg[Multicloud Object Gateway] or any S3-compatible object storage as a backup location.
 

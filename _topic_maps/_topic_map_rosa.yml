@@ -32,6 +32,13 @@ Topics:
   File: legal-notice
   Distros: openshift-rosa
 ---
+Name: Release notes
+Dir: rosa_release_notes
+Distros: openshift-rosa
+Topics:
+- Name: Red Hat OpenShift Service on AWS release notes
+  File: rosa-release-notes
+---
 Name: Introduction to ROSA
 Dir: rosa_architecture
 Distros: openshift-rosa
@@ -67,31 +74,16 @@ Topics:
 # - Name: Training for ROSA
 #   File: rosa-training
 ---
-Name: ROSA CLI
-Dir: rosa_cli
+Name: Getting started
+Dir: rosa_getting_started
 Distros: openshift-rosa
 Topics:
-# - Name: CLI and web console
-#   File: rosa-cli-penshift-console
-- Name: Getting started with the ROSA CLI
-  File: rosa-get-started-cli
-- Name: Managing objects with the ROSA CLI
-  File: rosa-manage-objects-cli
-- Name: Checking account and version information with the ROSA CLI
-  File: rosa-checking-acct-version-cli
-- Name: Checking logs with the ROSA CLI
-  File: rosa-checking-logs-cli
----
-Name: Red Hat OpenShift Cluster Manager
-Dir: ocm
-Distros: openshift-rosa
-Topics:
-- Name: Red Hat OpenShift Cluster Manager
-  File: ocm-overview
-# - Name: Red Hat OpenShift Cluster Manager
-#   File: ocm-overview
-# - Name: Using the OpenShift web console
-#   File: rosa-using-openshift-console
+- Name: ROSA quickstart guide
+  File: rosa-quickstart-guide-ui
+- Name: Comprehensive guide to getting started with ROSA
+  File: rosa-getting-started
+- Name: Understanding the ROSA with STS deployment workflow
+  File: rosa-sts-getting-started-workflow
 ---
 Name: Prepare your environment
 Dir: rosa_planning
@@ -109,15 +101,6 @@ Topics:
   File: rosa-sts-required-aws-service-quotas
 - Name: Setting up your environment
   File: rosa-sts-setting-up-environment
----
-Name: Getting started
-Dir: rosa_getting_started
-Distros: openshift-rosa
-Topics:
-- Name: Understanding the ROSA with STS deployment workflow
-  File: rosa-sts-getting-started-workflow
-- Name: Getting started with ROSA
-  File: rosa-getting-started
 ---
 Name: Installing, accessing, and deleting ROSA clusters
 Dir: rosa_install_access_delete_clusters
@@ -155,6 +138,8 @@ Topics:
     File: rosa-installing-rosa
   - Name: Creating a ROSA cluster without AWS STS
     File: rosa-creating-cluster
+  - Name: Configuring a private cluster
+    File: rosa-private-cluster
 # - Name: Creating a ROSA cluster using the web console
 #   File: rosa-creating-cluster-console
 #  - Name: Accessing a ROSA cluster
@@ -167,6 +152,32 @@ Topics:
     File: rosa-deleting-cluster
   - Name: Command quick reference for creating clusters and users
     File: rosa-quickstart
+---
+Name: ROSA CLI
+Dir: rosa_cli
+Distros: openshift-rosa
+Topics:
+# - Name: CLI and web console
+#   File: rosa-cli-openshift-console
+- Name: Getting started with the ROSA CLI
+  File: rosa-get-started-cli
+- Name: Managing objects with the ROSA CLI
+  File: rosa-manage-objects-cli
+- Name: Checking account and version information with the ROSA CLI
+  File: rosa-checking-acct-version-cli
+- Name: Checking logs with the ROSA CLI
+  File: rosa-checking-logs-cli
+---
+Name: Red Hat OpenShift Cluster Manager
+Dir: ocm
+Distros: openshift-rosa
+Topics:
+- Name: Red Hat OpenShift Cluster Manager
+  File: ocm-overview
+# - Name: Red Hat OpenShift Cluster Manager
+#   File: ocm-overview
+# - Name: Using the OpenShift web console
+#   File: rosa-using-openshift-console
 ---
 Name: Cluster administration
 Dir: rosa_cluster_admin
@@ -190,8 +201,6 @@ Topics:
     File: dedicated-aws-vpn
   - Name: Configuring AWS Direct Connect
     File: dedicated-aws-dc
-  - Name: Configuring a private cluster
-    File: rosa-private-cluster
 - Name: Nodes
   Dir: rosa_nodes
   Distros: openshift-rosa
@@ -207,9 +216,11 @@ Topics:
   Dir: rosa_logging
   Distros: openshift-rosa
   Topics:
+  - Name: Accessing the service logs
+    File: rosa-accessing-the-service-logs
   - Name: Installing the CloudWatch logging service
     File: rosa-install-logging
-  - Name: Viewing cluster logs
+  - Name: Viewing cluster logs in the AWS Console
     File: rosa-viewing-logs
 - Name: Monitoring user-defined projects
   Dir: rosa_monitoring
@@ -217,10 +228,12 @@ Topics:
   Topics:
   - Name: Understanding the monitoring stack
     File: rosa-understanding-the-monitoring-stack
-  - Name: Configuring the monitoring stack
-    File: rosa-configuring-the-monitoring-stack
   - Name: Accessing monitoring for user-defined projects
     File: rosa-accessing-monitoring-for-user-defined-projects
+  - Name: Configuring the monitoring stack
+    File: rosa-configuring-the-monitoring-stack
+  - Name: Enabling alert routing for user-defined projects
+    File: rosa-enabling-alert-routing-for-user-defined-projects
   - Name: Managing metrics
     File: rosa-managing-metrics
   - Name: Managing alerts
@@ -253,6 +266,18 @@ Topics:
 - Name: Upgrading ROSA
   File: rosa-upgrading
 ---
+Name: CI/CD
+Dir: cicd
+Distros: openshift-rosa
+Topics:
+- Name: Builds
+  Dir: builds
+  Distros: openshift-rosa
+  Topics:
+  - Name: Setting up additional trusted certificate authorities for builds
+    File: setting-up-trusted-ca
+    Distros: openshift-rosa
+---
   Name: Add-on services
   Dir: adding_service_cluster
   Distros: openshift-rosa
@@ -272,24 +297,48 @@ Topics:
   Dir: persistent_storage
   Distros: openshift-rosa
   Topics:
-  - Name: Persistent storage using AWS Elastic Block Store (EBS)
+  - Name: Persistent storage using AWS Elastic Block Store
     File: rosa-persistent-storage-aws-ebs
-  - Name: Persistent storage using AWS EFS
+  - Name: Persistent storage using AWS Elastic File Service
     File: osd-persistent-storage-aws
+  - Name: AWS Elastic File Service CSI Driver Operator
+    File: rosa-persistent-storage-aws-efs-csi
 ---
 Name: Networking
 Dir: networking
 Distros: openshift-rosa
 Topics:
+- Name: Understanding the Ingress Operator
+  File: ingress-operator
 - Name: OpenShift SDN default CNI network provider
   Dir: openshift_sdn
   Topics:
   - Name: Enabling multicast for a project
     File: enabling-multicast
-- Name: Configuring a cluster-wide proxy during installation
+- Name: Configuring a cluster-wide proxy
   File: configuring-cluster-wide-proxy
 - Name: CIDR range definitions
   File: cidr-range-definitions
+- Name: Network policy
+  Dir: network_policy
+  Topics:
+  - Name: About network policy
+    File: about-network-policy
+  - Name: Creating a network policy
+    File: creating-network-policy
+  - Name: Viewing a network policy
+    File: viewing-network-policy
+  - Name: Deleting a network policy
+    File: deleting-network-policy
+  - Name: Configuring multitenant isolation with network policy
+    File: multitenant-network-policy
+- Name: Configuring Routes
+  Dir: routes
+  Topics:
+  - Name: Route configuration
+    File: route-configuration
+  - Name: Secured routes
+    File: secured-routes
 ---
 Name: Application development
 Dir: applications
@@ -314,6 +363,93 @@ Topics:
 # - Name: Using the internal registry
 #   File: rosa-using-internal-registry
 ---
+Name: Service Mesh
+Dir: service_mesh
+Distros: openshift-rosa
+Topics:
+- Name: Service Mesh 2.x
+  Dir: v2x
+  Topics:
+  - Name: About OpenShift Service Mesh
+    File: ossm-about
+  - Name: Service Mesh 2.x release notes
+    File: servicemesh-release-notes
+  - Name: Service Mesh architecture
+    File: ossm-architecture
+  - Name: Service Mesh deployment models
+    File: ossm-deployment-models
+  - Name: Service Mesh and Istio differences
+    File: ossm-vs-community
+  - Name: Preparing to install Service Mesh
+    File: preparing-ossm-installation
+  - Name: Installing the Operators
+    File: installing-ossm
+  - Name: Creating the ServiceMeshControlPlane
+    File: ossm-create-smcp
+  - Name: Adding workloads to a service mesh
+    File: ossm-create-mesh
+  - Name: Enabling sidecar injection
+    File: prepare-to-deploy-applications-ossm
+  - Name: Upgrading Service Mesh
+    File: upgrading-ossm
+  - Name: Managing users and profiles
+    File: ossm-profiles-users
+  - Name: Security
+    File: ossm-security
+  - Name: Traffic management
+    File: ossm-traffic-manage
+  - Name: Metrics, logs, and traces
+    File: ossm-observability
+  - Name: Performance and scalability
+    File: ossm-performance-scalability
+  - Name: Deploying to production
+    File: ossm-deploy-production
+  - Name: Federation
+    File: ossm-federation
+  - Name: Extensions
+    File: ossm-extensions
+  - Name: 3scale WebAssembly for 2.1
+    File: ossm-threescale-webassembly-module
+  - Name: 3scale Istio adapter for 2.0
+    File: threescale-adapter
+  - Name: Troubleshooting Service Mesh
+    File: ossm-troubleshooting-istio
+  - Name: Control plane configuration reference
+    File: ossm-reference-smcp
+  - Name: Kiali configuration reference
+    File: ossm-reference-kiali
+  - Name: Jaeger configuration reference
+    File: ossm-reference-jaeger
+  - Name: Uninstalling Service Mesh
+    File: removing-ossm
+- Name: Service Mesh 1.x
+  Dir: v1x
+  Topics:
+  - Name: Service Mesh 1.x release notes
+    File: servicemesh-release-notes
+  - Name: Service Mesh architecture
+    File: ossm-architecture
+  - Name: Service Mesh and Istio differences
+    File: ossm-vs-community
+  - Name: Preparing to install Service Mesh
+    File: preparing-ossm-installation
+  - Name: Installing Service Mesh
+    File: installing-ossm
+  - Name: Security
+    File: ossm-security
+  - Name: Traffic management
+    File: ossm-traffic-manage
+  - Name: Deploying applications on Service Mesh
+    File: prepare-to-deploy-applications-ossm
+  - Name: Data visualization and observability
+    File: ossm-observability
+  - Name: Custom resources
+    File: ossm-custom-resources
+  - Name: 3scale Istio adapter for 1.x
+    File: threescale-adapter
+  - Name: Removing Service Mesh
+    File: removing-ossm
+---
 Name: Serverless
 Dir: serverless
 Distros: openshift-rosa
@@ -329,6 +465,8 @@ Topics:
     File: serverless-functions-about
   - Name: Event sources
     File: knative-event-sources
+  - Name: Brokers
+    File: serverless-brokers
   - Name: Channels and subscriptions
     File: serverless-channels
 - Name: Install
@@ -382,7 +520,7 @@ Topics:
     File: serverless-creating-channels
   - Name: Creating and managing subscriptions
     File: serverless-subs
-  - Name: Brokers
+  - Name: Creating brokers
     File: serverless-using-brokers
   - Name: Triggers
     File: serverless-triggers
@@ -418,6 +556,8 @@ Topics:
 - Name: Security
   Dir: security
   Topics:
+  - Name: Configuring TLS authentication
+    File: serverless-config-tls
   - Name: Configuring JSON Web Token authentication for Knative services
     File: serverless-ossm-with-kourier-jwt
   - Name: Configuring a custom domain for a Knative service
@@ -433,7 +573,7 @@ Topics:
     File: serverless-developing-nodejs-functions
   - Name: Developing TypeScript functions
     File: serverless-developing-typescript-functions
-  - Name: Developing Golang functions
+  - Name: Developing Go functions
     File: serverless-developing-go-functions
   - Name: Developing Python functions
     File: serverless-developing-python-functions
