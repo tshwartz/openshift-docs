@@ -8,6 +8,11 @@
 
 Create {oci-first} resources and services so that you can establish infrastructure with governance standards that meets your organization's requirements.
 
+[IMPORTANT]
+====
+The steps for provisioning {oci} resources are provided as an example only. You can also choose to create the required resources through other methods; the scripts are just an example. Installing a cluster with infrastructure that you provide requires knowledge of the cloud provider and the installation process on {product-title}. You can access {oci} Resource Manager configurations to complete these steps, or use the configurations to model your own custom script.
+====
+
 .Prerequisites
 
 * You configured an {oci} account to host the cluster. See link:https://docs.oracle.com/iaas/Content/openshift-on-oci/install-prereq.htm[Prerequisites (Oracle documentation)].

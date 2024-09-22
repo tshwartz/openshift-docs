@@ -22,7 +22,7 @@ From the {oci} web console, you must create the following resources:
 
 .Procedure
 
-. From the link:https://console.redhat.com/openshift/assisted-installer/clusters/~new[*Install OpenShift with the Assisted Installer*] page on the Hybrid Cloud Console, generate the discovery ISO image by completing all the required {ai-full} steps.
+. From the link:https://console.redhat.com/openshift/assisted-installer/clusters/~new[*Install OpenShift with the Assisted Installer*] page on the Hybrid Cloud Console, create the cluster configuration and generate the discovery ISO image by completing all the required {ai-full} steps.
 +
 .. In the *Cluster Details* step, complete the following fields:
 +
@@ -31,10 +31,10 @@ From the {oci} web console, you must create the following resources:
 |Field |Action required
 
 |*Cluster name*
-|Specify the name of your cluster, such as `ocidemo`.
+|Specify the name of your cluster, such as `oci`.
 
 |*Base domain*
-|Specify the base domain of the cluster, such as `splat-oci.devcluster.openshift.com`. Provided you previously created a compartment on {oci}, you can get this information by going to *DNS management* -> *Zones* -> *List scope* and then selecting the parent compartment. Your base domain should show under the *Public zones* tab.
+|Specify the base domain of the cluster, such as `openshift-clusters.example.com`. Provided you previously created a compartment on {oci}, you can get this information by going to *DNS management* -> *Zones* -> *List scope* and then selecting the parent compartment. Your base domain should show under the *Public zones* tab. *Do we need to add the bug here?*
 
 |*OpenShift version*
 | Specify `OpenShift 4.17` or a later version.
