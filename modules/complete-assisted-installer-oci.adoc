@@ -26,7 +26,7 @@ Following host discovery, the role of all nodes appears as *Auto-assign* by defa
 
 . Click *Next*. 
 
-== Adding custom manifests and starting the installation
+== Adding custom manifests
 
 Add the mandatory custom manifests provided by Oracle for the integration. They are located in the `custom_ manifest/manifests/` folder, and include the following:
 //Do we have better descriptions for these
@@ -60,6 +60,12 @@ For clusters deployed on bare-metal instance (BMI) nodes using iSCSI, you must a
 .. In the *Content* section, click *Browse*. Select the manifest from the `custom_ manifest/manifests/` folder.
 
 . Click *Add another manifest*. Repeat the above substeps for each required Oracle manifest in the `custom_ manifest/manifests` folder. Then click *Next*.
+
+== Completing cluster deployment
+
+Review your configurations and start the installation. 
+
+.Procedure
 
 . Review the *Review and create* page to confirm the definitions.
 
