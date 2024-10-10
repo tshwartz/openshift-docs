@@ -24,7 +24,10 @@ Create a stack, and then edit the custom manifest files according to the steps i
 
 . Select *My configuration* to use the Terraform configuration file.
 
-. In the *Stack configuration* section, select the ZIP file and click *Next*. The *Configure Variables* page is displayed.
+. In the *Stack configuration* section, select the ZIP file and click *Browse*. In the GitHub repository, select the OpenShift zip file that you downloaded in the "Creating {oci} resources and services" step. 
+//Is this correct? This is the part that is not clear to me?
+
+. Click *Next*. The *Configure Variables* page is displayed.
 
 . Complete the fields according to the instructions in the link:https://docs.oracle.com/iaas/Content/openshift-on-oci/installing-assisted.htm#install-cluster-edit-manifests[Editing the OpenShift Custom Manifests (Oracle documentation)]. Pay attention to the following integration-specific values:
 // There are probably a lot more - didn't copy the whole section over
@@ -40,15 +43,22 @@ Create a stack, and then edit the custom manifest files according to the steps i
 |Use the same cluster name that you entered during the creation of the discovery ISO image in the Red Hat Hybrid Cloud Console.
 
 |*OpenShift Image Source URI*
-|Enter the URI for the minimal ISO that you copied in the *Pre-Authenticated Request Details* dialog box. For details, see TBD. Then click *Close*.
+|Enter the URI for the minimal ISO that you copied in the *Pre-Authenticated Request Details* dialog box. This is the URL from which the control plane nodes and worker nodes will be booted. For details, see TBD. Then click *Close*.
 
 |*Compute Shape*
 |Enter the shape for Virtual Machine or Bare Metal, according to your installation. Bare metal will be using the iSCI device.
+
+|*zone_dns*
+|Enter the *Base Domain* value that you defined in the Red Hat Hybrid Cloud Console.
 |===
 
-. (Optional) Edit the default values for the other fields as needed. By default, the cluster has 3 control plane nodes and 3 worker nodes.
+. (Optional) Edit the default values for the other fields as needed. By default, the cluster has 3 control plane nodes and 3 compute nodes.
 
 . Click *Next* and review the Stack information and Variables.
 
+. In the *Run apply on the create stack?* section, select the *Run apply* checkbox and click *Create*.
+
 . Click Create to create the stack. The Console redirects to the stack details page for the new stack.
-On the stack details page, click Apply to create an apply job and provision the infrastructure for the cluster. After running an apply job, get the job's details to check its status. Succeeded (SUCCEEDED) indicates that the job has completed.
+
+//This was there previously but may have changed. On the stack details page, click Apply to create an apply job and provision the infrastructure for the cluster. After running an apply job, get the job's details to check its status. Succeeded (SUCCEEDED) indicates that the job has completed.
+
