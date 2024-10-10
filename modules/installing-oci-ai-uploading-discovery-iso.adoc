@@ -4,7 +4,7 @@
 
 :_mod-docs-content-type: PROCEDURE
 [id="oci-ai-uploading-discovery-iso_{context}"]
-= Uploading the {ai} discovery ISO to {oci-full}
+= Uploading the {ai-full} discovery ISO to {oci-first-no-rt}
 
 Upload the discovery ISO image to the {oci} bucket in the *OpenShift* compartment. For more information, see ee link:https://docs.public.oneportal.content.oci.oraclecloud.com/en-us/iaas/Content/Object/Tasks/managingobjects_topic-To_upload_objects_to_a_bucket.htm[Uploading an Object Storage Object to a Bucket (Oracle documentation)].
 
@@ -21,7 +21,7 @@ Upload the discovery ISO image to the {oci} bucket in the *OpenShift* compartmen
 
 . You must create a pre-authenticated request for your uploaded discovery ISO image. Ensure that you make note of the URL from the pre-authenticated request, because you must specify the URL at a later stage when you create an {oci} stack.
 
-. Log into the {oci-full} console.
+. Log into the {oci-first-no-rt} web console.
 
 . Open the navigation menu, and click *Storage*. 
 

@@ -26,9 +26,10 @@ Following host discovery, the role of all nodes appears as *Auto-assign* by defa
 
 . Click *Next*. 
 
-== Adding custom manifests
+== Adding custom manifests and starting the installation
 
-Add the mandatory custom manifests provided by Oracle for the integration. They are located in the `custom_ manifest/manifests/` folder, and include the following: *Do we have better descriptions for these?*
+Add the mandatory custom manifests provided by Oracle for the integration. They are located in the `custom_ manifest/manifests/` folder, and include the following:
+//Do we have better descriptions for these
 
 ** `oci-ccm.yml` - CCM manifest
 
@@ -52,7 +53,7 @@ For clusters deployed on bare-metal instance (BMI) nodes using iSCSI, you must a
 
 . Upload the first manifest file, for example `oci-ccm.yml`:
 
-.. In the *Folder* field, select `manifests`. This is the {ai} folder where you want to save the custom manifest file.
+.. In the *Folder* field, select `manifests`. This is the {ai-full} folder where you want to save the custom manifest file.
 
 .. In the *File name* field, enter a value such as `oci-ccm.yml`.
 
@@ -60,15 +61,9 @@ For clusters deployed on bare-metal instance (BMI) nodes using iSCSI, you must a
 
 . Click *Add another manifest*. Repeat the above substeps for each required Oracle manifest in the `custom_ manifest/manifests` folder. Then click *Next*.
 
-== Completing cluster deployment
-
-Review your configurations and start the installation. 
-
-.Procedure
-
 . Review the *Review and create* page to confirm the definitions.
 
-. Click *Install cluster* to install your {openshift} cluster on OCI.
+. Click *Install cluster* to install your {product-title} cluster on {oci}.
 
 
 ////

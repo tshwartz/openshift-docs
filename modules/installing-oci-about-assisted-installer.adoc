@@ -45,13 +45,13 @@ image::684_OpenShift_Installing_on_OCI_0724_assisted.png[Image of a high-level w
 
 An outline of the procedure is as follows:
 
-. In the {oci} console, create a stack (template?) for the {oci} resources and save it locally as a ZIP file:
+. In the {oci-first-no-rt} console, create a stack template for the {oci} resources and save it locally as a ZIP file:
 
 .. TBD
 
 .. TBD
 
-. In the {ai} console, set up a cluster:
+. In the {ai-full} console, set up a cluster:
 
 .. Create the cluster.
 
@@ -69,7 +69,7 @@ An outline of the procedure is as follows:
 
 .. Update the manifests with the secret.
 
-. In the {ai} console, complete the cluster installation:
+. In the {ai-full} console, complete the cluster installation:
 
 .. Set roles for the cluster nodes.
 
