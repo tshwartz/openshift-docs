@@ -31,14 +31,18 @@ include::modules/using-assisted-installer-oci-agent-iso.adoc[leveloffset=+1]
 * xref:../../architecture/architecture-installation.adoc#architecture-installation[Installation and update]
 * xref:../../installing/install_config/configuring-firewall.adoc#configuring-firewall[Configuring your firewall]
 
-// Uploading the discovery ISO to OCI
-include::modules/installing-oci-ai-uploading-discovery-iso.adoc[leveloffset=+1]
-
-// Creating a pre-authenticated request URL
-include::modules/installing-oci-ai-creating-pre-authenticated-request.adoc[leveloffset=+1]
-
 // Provisioning OCI infrastructure for your cluster
 include::modules/provision-oci-infrastructure-ocp-cluster.adoc[leveloffset=+1]
+
+// Uploading the discovery ISO to OCI
+include::modules/installing-oci-ai-uploading-discovery-iso.adoc[leveloffset=+2]
+
+// Creating a pre-authenticated request URL
+include::modules/installing-oci-ai-creating-pre-authenticated-request.adoc[leveloffset=+2]
+
+// Creating a stack
+
+include::modules/installing-oci-ai-create-stack.adoc[leveloffset=+2]
 
 // Completing the remaining Assisted Installer steps
 include::modules/complete-assisted-installer-oci.adoc[leveloffset=+1]

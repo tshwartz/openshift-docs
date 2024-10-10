@@ -20,7 +20,7 @@ For more information about pre-authenticated requests, see link:https://docs.pub
 
 .Procedure
 
-. Open the navigation menu and click Storage. Under Object Storage & Archive Storage, click Buckets.
+. Open the navigation menu and click *Storage*. Under *Object Storage & Archive Storage*, click *Buckets*.
 
 . Select the compartment from the list under List Scope. All buckets in that compartment are listed in tabular form.
 

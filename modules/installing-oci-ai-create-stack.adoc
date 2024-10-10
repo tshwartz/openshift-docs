@@ -3,19 +3,52 @@
 // * installing/installing_oci/installing-oci-assisted-installer.adoc
 
 :_mod-docs-content-type: PROCEDURE
-[id="provision-oci-infrastructure-ocp-cluster_{context}"]
-= Provisioning {oci} infrastructure for your cluster
+[id="creating-stack-in-oci_{context}"]
+= Creating a stack in the {oci} web console
 
 By using the {ai-full} to create details for your {product-title} cluster, you can specify these details in a stack. A stack is an {oci} feature where you can automate the provisioning of all necessary {oci} infrastructure resources, such as the custom image, that are required for installing an {product-title} cluster on {oci}.
 
 The {oci-first} Compute Service creates a virtual machine (VM) instance on {oci}. This instance can then automatically attach to a virtual network interface controller (vNIC) in the virtual cloud network (VCN) subnet. On specifying the IP address of your {product-title} cluster in the custom manifest template files, the {oci} instance can communicate with your cluster over the VCN.
 
+Create a stack, and then edit the custom manifest files according to the steps in the link:https://docs.oracle.com/iaas/Content/openshift-on-oci/installing-assisted.htm#install-cluster-edit-manifests[Editing the OpenShift Custom Manifests (Oracle documentation)].
+
 .Prerequisites
 
 * You uploaded the discovery ISO image to the {oci} bucket. For more information, see "Using the {ai-full} to generate an {oci}-compatible discovery ISO image".
 
-.Procedure
+//Steps below taken from the link above
 
-. Complete the steps for provisioning {oci} infrastructure for your {product-title} cluster. See link:https://docs.oracle.com/iaas/Content/openshift-on-oci/installing-assisted.htm#install-cluster-apply-stack[Creating OpenShift Container Platform Infrastructure Using Resource Manager (Oracle documentation)].
+. Open the navigation menu and click *Developer Services*. Under Resource Manager, click *Stacks*. 
 
-. Create a stack, and then edit the custom manifest files according to the steps in the link:https://docs.oracle.com/iaas/Content/openshift-on-oci/installing-assisted.htm#install-cluster-edit-manifests[Editing the OpenShift Custom Manifests (Oracle documentation)].
+. Click *Create stack*. 
+
+. Select *My configuration* to use the Terraform configuration file.
+
+. In the *Stack configuration* section, select the ZIP file and click *Next*. The *Configure Variables* page is displayed.
+
+. Complete the fields according to the instructions in the link:https://docs.oracle.com/iaas/Content/openshift-on-oci/installing-assisted.htm#install-cluster-edit-manifests[Editing the OpenShift Custom Manifests (Oracle documentation)]. Pay attention to the following integration-specific values:
+// There are probably a lot more - didn't copy the whole section over
++
+[cols="1,3",options="header",subs="quotes"]
+|===
+|Field |Value
+
+|*Compartment*
+|Enter the compartment you defined in the {oci} bucket for OpenShift. For example, the *OpenShift* compartment.
+
+|*Cluster Name:*
+|Use the same cluster name that you entered during the creation of the discovery ISO image in the Red Hat Hybrid Cloud Console.
+
+|*OpenShift Image Source URI*
+|Enter the URI for the minimal ISO that you copied in the *Pre-Authenticated Request Details* dialog box. For details, see TBD. Then click *Close*.
+
+|*Compute Shape*
+|Enter the shape for Virtual Machine or Bare Metal, according to your installation. Bare metal will be using the iSCI device.
+|===
+
+. (Optional) Edit the default values for the other fields as needed. By default, the cluster has 3 control plane nodes and 3 worker nodes.
+
+. Click *Next* and review the Stack information and Variables.
+
+. Click Create to create the stack. The Console redirects to the stack details page for the new stack.
+On the stack details page, click Apply to create an apply job and provision the infrastructure for the cluster. After running an apply job, get the job's details to check its status. Succeeded (SUCCEEDED) indicates that the job has completed.
