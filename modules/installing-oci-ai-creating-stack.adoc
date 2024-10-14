@@ -16,6 +16,8 @@ Create a stack, and then edit the custom manifest files according to the steps i
 
 * You uploaded the discovery ISO image to the {oci} bucket. For more information, see "Using the {ai-full} to generate an {oci}-compatible discovery ISO image".
 
+.Prerequisites
+
 //Steps below taken from the link above
 
 . Open the navigation menu and click *Developer Services*. Under Resource Manager, click *Stacks*. 

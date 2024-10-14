@@ -72,7 +72,7 @@ Review your configurations and start the installation.
 . Click *Install cluster* to install your {product-title} cluster on {oci}.
 
 
-////
+OPTION 2 - TEMPORARY
 
 .Procedure
 
@@ -105,4 +105,3 @@ Before, you can continue to the next steps, wait for each node to reach the `Rea
 . From the *Review and create* page, click *Install cluster* to create your {product-title} cluster on {oci}.
 
 After the cluster installation and initialization operations, the {ai-full} indicates the completion of the cluster installation operation. For more information, see "Completing the installation" section in the _{ai-full} for {product-title}_ document.
-////

@@ -4,7 +4,7 @@
 
 :_mod-docs-content-type: PROCEDURE
 [id="oci-ai-create-pre-authenticated-request_{context}"]
-= Creating a pre-authenticated request 
+= Creating a pre-authenticated request in the {oci} web console
 
 You now create a pre-authenticated request for your uploaded discovery ISO image. 
 
