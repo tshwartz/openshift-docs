@@ -24,8 +24,20 @@ Before installing {product-title} using Assisted Installer, create the necessary
 .. Create a new object storage bucket into which you will upload the discovery ISO image.
 For the full procedure, see link:https://docs.oracle.com/en-us/iaas/Content/Object/Tasks/managingbuckets_topic-To_create_a_bucket.htm#top[Creating an Object Storage Bucket (Oracle documentation)].
 
-. Download the latest version of the `create-cluster-vX.X.X.zip` configuration file from the link:https://github.com/oracle-quickstart/oci-openshift[`oracle-quickstart/oci-openshift`] repository. This file
-provides the infrastructure for the cluster and contains configurations for the following:
+. Download the latest versions of the following configuration files from the link:https://github.com/oracle-quickstart/oci-openshift/releases[`oracle-quickstart/oci-openshift` releases page]:
++
+--
+** `create-resource-attribution-tags-vX.X.X.zip`: The Terraform stack for creating the required resource attribution tags in your {oci} tenancy. You must apply this stack before creating the cluster.
++
+[IMPORTANT]
+====
+Resource attribution tags are mandatory for {product-title} on {oci-distributed-no-rt}. If you have not previously applied the `create-resource-attribution-tags` stack in your tenancy, you must download and apply it before proceeding. After the tags exist, later cluster deployments can reuse them.
+====
+
+** `create-cluster-vX.X.X.zip`: The Terraform stack and custom manifests for provisioning {oci} resources and installing {product-title} clusters on {oci-distributed-no-rt}.
+--
++
+The `create-cluster` configuration file contains the following:
 +
 --
 ** *Terraform Stacks*: The Terraform stack code for provisioning {oci} resources to create and manage {product-title} clusters on {oci-distributed-no-rt}.
@@ -39,3 +51,13 @@ To make any changes to the manifests, you can clone the entire Oracle GitHub rep
 ====
 +
 For details, see link:https://docs.oracle.com/iaas/Content/openshift-on-oci/install-prereq.htm#install-configuration-files[Configuration Files (Oracle documentation)].
+
+. If the required resource attribution tags do not already exist in your tenancy, apply the `create-resource-attribution-tags` stack:
++
+--
+.. In the {oci-distributed-no-rt} console, navigate to *Resource Manager* -> *Stacks* and click *Create Stack*.
+.. Upload the `create-resource-attribution-tags-vX.X.X.zip` file and click *Next*.
+.. Click *Apply* to create the resource attribution tags.
+--
++
+For details, see link:https://github.com/oracle-quickstart/oci-openshift/tree/main/terraform-stacks/create-resource-attribution-tags[create-resource-attribution-tags (Oracle GitHub)].
